@@ -74,10 +74,10 @@ const Register = props => {
           required="" autoFocus="" />
       </fieldset>
       <fieldset>
-        <label htmlFor="phoneNumber"> Phone Number</label>
-        <input onChange={handleFieldChange} type="phoneNumber"
-          id="phoneNumber"
-          placeholder="phoneNumber"
+        <label htmlFor="phone_number"> Phone Number</label>
+        <input onChange={handleFieldChange} type="phone_number"
+          id="phone_number"
+          placeholder="phone_number"
           required="" autoFocus="" />
       </fieldset>
         <button type="submit">
