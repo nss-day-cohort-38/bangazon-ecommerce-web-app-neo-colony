@@ -4,6 +4,7 @@ import SearchResults from './search/SearchResults'
 import Home from './home/Home'
 import Profile from './account/Account'
 import Login from './auth/Login'
+import Register from './auth/Register'
 
 const AppViews = props => {
 
@@ -32,6 +33,11 @@ const AppViews = props => {
             path="/login"
             render={props => {
                 return <Login results={props.results} {...props} />
+            }}
+            />
+            
+            <Route path="/register" render={props => {
+                return <Register {...props} />
             }}
             />
             

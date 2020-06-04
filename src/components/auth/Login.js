@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import useSimpleAuth from "./useSimpleAuth";
 
 const Login = props => {
-  const [credentials, setCredentials] = useState({ username: "molliegoforth", password: "Password123" });
+  const [credentials, setCredentials] = useState({ username: "", password: "" });
   const { login } = useSimpleAuth()
 
   const handleFieldChange = (evt) => {
