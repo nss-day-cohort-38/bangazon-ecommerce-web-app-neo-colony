@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
 import './NavBar.css'
+import useSimpleAuth from "../auth/useSimpleAuth";
 
 const NavBar = props => {
+
+    const { logout } = useSimpleAuth()
 
     const handleFieldChange = evt => {
         const stateToChange = { ...props.keyword };
@@ -26,6 +29,10 @@ const NavBar = props => {
             });
     };
 
+    const handleLogout = () => {
+        logout();
+    }
+
     return (
         <>
             <div className="nav">
@@ -44,7 +51,7 @@ const NavBar = props => {
                         <Link className="nav-item" to="/sell">sell</Link>
                         <Link className="nav-item" to="/account">account</Link>
                         <Link className="nav-item" to="/cart">cart</Link>
-                        <Link className="nav-item" to="/login">logout</Link>
+                        <Link onClick={handleLogout} className="nav-item" to="/login">logout</Link>
                     </div>
                 </div>
 
