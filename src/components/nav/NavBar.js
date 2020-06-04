@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from "react-router-dom"
 import './NavBar.css'
 
 const NavBar = props => {
@@ -28,10 +29,17 @@ const NavBar = props => {
     return (
         <>
             <div className="nav">
-                <div>b a n g a z o n__d o t c o m</div>
+                <div className="nav-item">b a n g a z o n__d o t c o m</div>
                 
+
+                <div id="nav-links">
+                    <Link className="nav-item" to="/sell">sell</Link>
+                    <Link className="nav-item" to="/account">account</Link>
+                    <Link className="nav-item" to="/cart">cart</Link>
+                </div>
                 <input
                     id="searchInput"
+                    className="nav-item"
                     type="text"
                     placeholder="search a product"
                     onChange={handleFieldChange}

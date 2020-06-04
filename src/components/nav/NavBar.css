@@ -1,3 +1,17 @@
 .nav {
+    display: flex;
+    flex-direction: row;
     background-color: rgba(57, 255, 2, 0.445);
+    justify-content: flex-start;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+.nav-item {
+    padding: 5px 5px 0px 5px;
 }
