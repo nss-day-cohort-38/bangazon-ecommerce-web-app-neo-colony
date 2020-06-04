@@ -3,6 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import SearchResults from './search/SearchResults'
 import Home from './home/Home'
 import Profile from './account/Account'
+import Login from './auth/Login'
 
 const AppViews = props => {
 
@@ -25,6 +26,12 @@ const AppViews = props => {
             path="/profile"
             render={props => {
                 return <Profile results={props.results} {...props} />
+            }}
+            />
+            <Route
+            path="/login"
+            render={props => {
+                return <Login results={props.results} {...props} />
             }}
             />
             
