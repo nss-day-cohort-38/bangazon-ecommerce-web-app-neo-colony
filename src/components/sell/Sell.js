@@ -5,7 +5,7 @@ const Sell = () => {
     
 
     return (
-
+        <div>SELL</div>
     )
 }
 
