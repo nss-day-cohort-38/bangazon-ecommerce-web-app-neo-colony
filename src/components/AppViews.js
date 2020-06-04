@@ -6,6 +6,7 @@ import Profile from './account/Account'
 import ProductDetails from './product/ProductDetails'
 import Login from './auth/Login'
 import Register from './auth/Register'
+import Sell from './sell/Sell'
 
 const AppViews = props => {
 
@@ -44,9 +45,9 @@ const AppViews = props => {
             />
             <Route
                 exact
-                path="products/:productId(\d+)"
+                path="/products/:productId(\d+)"
                 render={props => {
-                    <ProductDetails
+                    return <ProductDetails
                         productId={parseInt(props.match.params.productId)}
                         {...props}
                     />

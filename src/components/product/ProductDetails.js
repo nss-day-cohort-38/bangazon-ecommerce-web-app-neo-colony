@@ -4,21 +4,26 @@ import ApiManager from '../../modules/ApiManager'
 
 const ProductDetails = props => {
 
-    const [fetchedDetails, setFetchedDetails] = useState([])
+    const [fetchedDetails, setFetchedDetails] = useState("")
 
 
+    const getDetails = (route, productId) => {
+        ApiManager.getOne(route, productId)
+            .then(res => setFetchedDetails(res))
+    }
 
-    ApiManager.getOne("products", props.productId)
-        .then(res => setFetchedDetails(res))
+    useEffect(() => {
+        getDetails("products", props.productId)
+    }, [])
 
 
 
 
     return (
         <>
-            <div type="hidden" value={`${fetchedDetails.id}`}></div>
+            <div>{fetchedDetails.id}</div>
 
-            <img src={require(`${fetchedDetails.image_path}`)} />
+            {/* <img src={require(`${fetchedDetails.image_path}`)} /> */}
             <div>{fetchedDetails.title}</div>
             <div>{fetchedDetails.price}</div>
             <div>{fetchedDetails.description}</div>
