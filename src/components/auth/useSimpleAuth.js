@@ -14,6 +14,7 @@ const useSimpleAuth = () => {
             .then(parsedResponse => {
                 if ("token" in parsedResponse) {
                     sessionStorage.setItem("ecommerceapi-token", parsedResponse.token)
+                    setIsLoggedIn(true)
                 }
             })
     }
