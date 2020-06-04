@@ -44,6 +44,7 @@ const NavBar = props => {
                         <Link className="nav-item" to="/sell">sell</Link>
                         <Link className="nav-item" to="/account">account</Link>
                         <Link className="nav-item" to="/cart">cart</Link>
+                        <Link className="nav-item" to="/login">logout</Link>
                     </div>
                 </div>
 
