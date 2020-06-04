@@ -1,13 +1,14 @@
 .nav {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     background-color: rgba(57, 255, 2, 0.445);
     justify-content: flex-start;
+    padding-bottom: 10px;
 }
 
 .nav-links {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     
     
 }

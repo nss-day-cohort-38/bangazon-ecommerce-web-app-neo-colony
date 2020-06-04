@@ -29,14 +29,6 @@ const NavBar = props => {
     return (
         <>
             <div className="nav">
-                <div className="nav-item">b a n g a z o n__d o t c o m</div>
-                
-
-                <div id="nav-links">
-                    <Link className="nav-item" to="/sell">sell</Link>
-                    <Link className="nav-item" to="/account">account</Link>
-                    <Link className="nav-item" to="/cart">cart</Link>
-                </div>
                 <input
                     id="searchInput"
                     className="nav-item"
@@ -44,6 +36,16 @@ const NavBar = props => {
                     placeholder="search a product"
                     onChange={handleFieldChange}
                     onKeyUp={evt => evt.key === "Enter" ? handleSearch(evt) : null} />
+                <div>
+
+
+                    <div id="nav-links">
+                        <Link className="nav-item">b a n g a z o n</Link>
+                        <Link className="nav-item" to="/sell">sell</Link>
+                        <Link className="nav-item" to="/account">account</Link>
+                        <Link className="nav-item" to="/cart">cart</Link>
+                    </div>
+                </div>
 
 
             </div>
