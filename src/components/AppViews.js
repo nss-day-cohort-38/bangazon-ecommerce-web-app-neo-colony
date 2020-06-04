@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Redirect } from "react-router-dom";
 import SearchResults from './search/SearchResults'
 import Home from './home/Home'
-import Profile from './profile/Profile'
+import Profile from './account/Account'
 
 const AppViews = props => {
 
