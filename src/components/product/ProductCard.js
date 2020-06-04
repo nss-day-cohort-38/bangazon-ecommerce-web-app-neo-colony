@@ -8,11 +8,11 @@ const ProductCard = props => {
 
     return (
         <>
-            <container onClick={seeDetails}>
+            <section onClick={seeDetails}>
                 <div>{props.product.title}</div>
                 <div>{props.product.price}</div>
                 <div>{props.product.quantity}</div>
-            </container>
+            </section>
         </>
     )
 }
