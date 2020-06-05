@@ -7,6 +7,7 @@ import ProductDetails from './product/ProductDetails'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import Sell from './sell/Sell'
+import Account from './account/Account';
 
 const AppViews = props => {
 
@@ -26,15 +27,9 @@ const AppViews = props => {
                 }}
             />
             <Route
-                path="/profile"
+                path="/account"
                 render={props => {
-                    return <Profile />
-                }}
-            />
-            <Route
-                path="/profile"
-                render={props => {
-                    return <Profile />
+                    return <Account />
                 }}
             />
             <Route
