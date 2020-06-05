@@ -15,7 +15,7 @@ const AppViews = props => {
             <Route
                 path="/search"
                 render={props => {
-                    return <SearchResults results={props.results} {...props} />
+                    return <SearchResults {...props} />
                 }}
             />
 

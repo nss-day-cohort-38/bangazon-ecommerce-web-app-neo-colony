@@ -18,7 +18,6 @@ const ProductDetails = props => {
 
 
 
-
     return (
         <>
             <div>{fetchedDetails.id}</div>

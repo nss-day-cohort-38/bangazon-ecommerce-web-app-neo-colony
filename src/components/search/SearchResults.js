@@ -3,16 +3,16 @@ import ProductCard from '../product/ProductCard'
 
 const SearchResults = props => {
 
-    console.log("in SearchResults")
+    console.log(props.location.state.product)
 
     useEffect(() => {
         
 
-    }, [props.results])
+    }, [])
 
     return (
         <div>
-            {props.results.map(res => <ProductCard product={res} />)}
+            {props.location.state.product.map(res => <ProductCard product={res} />)}
         </div>
     )
 }

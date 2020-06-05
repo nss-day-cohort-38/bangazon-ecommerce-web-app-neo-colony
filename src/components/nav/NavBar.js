@@ -1,33 +1,41 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from "react-router-dom"
+import { Link, withRouter } from "react-router-dom"
 import './NavBar.css'
 import useSimpleAuth from "../auth/useSimpleAuth";
+import ApiManager from '../../modules/ApiManager'
 
 const NavBar = props => {
+
+    const [keyword, setKeyword] = useState({ searchInput: "" });
+    const [sResults, setSearchResults] = useState([]);
 
     const { logout } = useSimpleAuth()
 
     const handleFieldChange = evt => {
-        const stateToChange = { ...props.keyword };
+        const stateToChange = { ...keyword };
         stateToChange[evt.target.id] = evt.target.value;
-        props.setKeyword(stateToChange);
+        setKeyword(stateToChange);
     };
+
+    
 
     const handleSearch = (evt) => {
         console.log("search pressed")
 
 
-        const stringArr = props.keyword.searchInput.split(" ").join("+");
+        const stringArr = keyword.searchInput.split(" ").join("+");
 
-        fetch(`http://localhost:8000/products?title=${stringArr}`)
-            .then(resp => resp.json())
+        ApiManager.queryProducts("title", stringArr)
             .then(searchResults => {
-                props.setResults(searchResults);
-                console.log(props.keyword.searchInput)
+                setSearchResults(searchResults);
+                console.log(searchResults)
                 console.log(props.results)
-
-            });
-    };
+                props.history.push({
+                    pathname: '/search',
+                    state: {product: sResults}
+                })
+            })
+    }
 
     const handleLogout = () => {
         logout();
@@ -61,4 +69,4 @@ const NavBar = props => {
     )
 }
 
-export default NavBar
+export default withRouter(NavBar)
