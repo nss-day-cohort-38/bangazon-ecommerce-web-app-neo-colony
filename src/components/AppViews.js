@@ -7,7 +7,11 @@ import ProductDetails from './product/ProductDetails'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import Sell from './sell/Sell'
+<<<<<<< HEAD
 import OrderCard from './order/OrderCard'
+=======
+import AddPayment from './payments/AddPayment'
+>>>>>>> master
 
 const AppViews = props => {
 
@@ -27,15 +31,17 @@ const AppViews = props => {
                 }}
             />
             <Route
-                path="/profile"
+                exact path="/account"
                 render={props => {
                     return <Profile />
                 }}
             />
             <Route
-                path="/profile"
+                path="/account/addpayment"
                 render={props => {
-                    return <Profile />
+                    return <AddPayment 
+                        {...props}
+                    />
                 }}
             />
             <Route
