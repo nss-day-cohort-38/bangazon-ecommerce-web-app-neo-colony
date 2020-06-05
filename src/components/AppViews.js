@@ -7,11 +7,8 @@ import ProductDetails from './product/ProductDetails'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import Sell from './sell/Sell'
-<<<<<<< HEAD
 import OrderCard from './order/OrderCard'
-=======
 import AddPayment from './payments/AddPayment'
->>>>>>> master
 
 const AppViews = props => {
 
