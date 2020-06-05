@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from "react";
 import AddPayment from '.payments/AddPayment';
 import {Link} from 'react-router-dom';
-import APIManager from '../../modules/APIManager'
+import ApiManager from '../../modules/ApiManager'
 
 const OrderDetail = props => {
     const [paymentTypes, setPaymentType] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const paymentTypeHandler = async () => {
-        const types = await APIManager.getAll('paymnettypes');
+        const types = await ApiManager.getAll('paymnettypes');
         setPaymentType(types);
     };
 
@@ -16,7 +16,7 @@ const OrderDetail = props => {
       const confirmPayment = window.confirm("Is this the payment you want to use?");
 
       if (confirmPayment) {
-        props.addPayment(paymenttypeId);
+        props.AddPayment(paymenttypeId);
       }
     };
 
@@ -29,7 +29,7 @@ const OrderDetail = props => {
 
     const handleDelete = () => {
         setIsLoading(true);
-        APIManager.delete(props.orderId).then(() =>
+        ApiManager.delete(props.orderId).then(() =>
           props.history.push("/order")
         );
 

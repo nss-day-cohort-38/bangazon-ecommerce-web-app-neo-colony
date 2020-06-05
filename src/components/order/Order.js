@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import OrderCard from "./OrderCard";
-import APIManager from "../modules/APIManager";
+import APIManager from "../../modules/APIManager";
 
 const OrderList = (props) => {
   const [orders, setOrders] = useState([]);
