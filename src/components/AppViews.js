@@ -7,6 +7,7 @@ import ProductDetails from './product/ProductDetails'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import Sell from './sell/Sell'
+import SellProductForm from './sell/SellForm';
 
 const AppViews = props => {
 
@@ -40,7 +41,7 @@ const AppViews = props => {
             <Route
                 path="/sell"
                 render={props => {
-                    return <Sell />
+                    return <SellProductForm {...props}/>
                 }}
             />
             <Route
