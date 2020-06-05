@@ -2,10 +2,17 @@ import React from 'react'
 
 const ProductCard = props => {
 
+    const seeDetails = () => {
+        props.history.push(`/products/${props.product.id}`)
+    }
+
     return (
         <>
-        <h1>Hiiiiiiiiii</h1>
-        <div>{props.product.title}</div>
+            <section onClick={seeDetails}>
+                <div>{props.product.title}</div>
+                <div>{props.product.price}</div>
+                <div>{props.product.quantity}</div>
+            </section>
         </>
     )
 }
