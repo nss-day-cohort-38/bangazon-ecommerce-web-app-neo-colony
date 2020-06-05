@@ -7,6 +7,7 @@ const AddPayment = (props) => {
     account_number: "",
     expiration_date: ""
   });
+  const [paymentMethods, setPaymentMethods] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
   const handleFieldChange = (evt) => {
@@ -26,7 +27,12 @@ const AddPayment = (props) => {
         expiration_date: exp_date
     }
 
-    ApiManager.create("paymenttypes", paymentTypeCopy)
+    ApiManager.create("paymenttypes", paymentTypeCopy).then(() => {
+        ApiManager.getAll("paymenttypes").then(resp => {
+            console.log(resp)
+            setPaymentMethods(resp)
+        })
+    })
   };
 
   return (
@@ -70,6 +76,7 @@ const AddPayment = (props) => {
         <button disabled={isLoading} type="submit">Submit</button>
       </fieldset>
     </form>
+    <section></section>
   );
 };
 
