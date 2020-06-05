@@ -22,7 +22,7 @@ const OrderList = (props) => {
           onClick={() => {
             props.history.push(`/neworder`);
           }}
-          >Create New OrderCard
+          >Create New Order
           </button> </div>
         <div>
           {orders.map((order) =>(
