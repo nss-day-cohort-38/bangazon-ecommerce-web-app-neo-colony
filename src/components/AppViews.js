@@ -32,6 +32,12 @@ const AppViews = props => {
                 }}
             />
             <Route
+                path="/account/addpayment"
+                render={props => {
+                    return <Profile />
+                }}
+            />
+            <Route
                 path="/sell"
                 render={props => {
                     return <Sell />
