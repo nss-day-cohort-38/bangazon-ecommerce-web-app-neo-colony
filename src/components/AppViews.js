@@ -17,11 +17,12 @@ const AppViews = props => {
             <Route
                 path="/search"
                 render={props => {
-                    return <SearchResults results={props.results} {...props} />
+                    return <SearchResults {...props} />
                 }}
             />
 
             <Route
+                exact
                 path="/"
                 render={props => {
                     return <Home />
@@ -36,7 +37,7 @@ const AppViews = props => {
             <Route
                 path="/account/addpayment"
                 render={props => {
-                    return <AddPayment 
+                    return <AddPayment
                         {...props}
                     />
                 }}
