@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ApiManager from "../../modules/ApiManager";
+import PaymentTypeCard from "./PaymentTypeCard"
 
 const AddPayment = (props) => {
   const [paymenttype, setPaymenttype] = useState({
@@ -17,19 +18,18 @@ const AddPayment = (props) => {
   };
 
   const addPaymenttype = (e) => {
-    e.preventDefault();
-    setIsLoading(true);
+        e.preventDefault();
+        setIsLoading(true);
 
-    const exp_date = new Date(paymenttype.expiration_date);
-    const paymentTypeCopy = {
-      merchant_name: paymenttype.merchant_name,
-      account_number: paymenttype.account_number,
-      expiration_date: exp_date,
-    };
+        const exp_date = new Date(paymenttype.expiration_date);
+        const paymentTypeCopy = {
+        merchant_name: paymenttype.merchant_name,
+        account_number: paymenttype.account_number,
+        expiration_date: exp_date,
+        };
 
-    ApiManager.create("paymenttypes", paymentTypeCopy)
-        .then(ApiManager.getAll("paymenttypes"))
-        .then(() => {props.history.push("/account")})
+        ApiManager.create("paymenttypes", paymentTypeCopy)
+            .then(ApiManager.getAll("paymenttypes").then(resp => setPaymentMethods(resp)))
   };
 
   return (
@@ -74,8 +74,23 @@ const AddPayment = (props) => {
             </button>
         </fieldset>
         </form>
-        <div>
-            {}
+
+        <div className="dynamicListContainer">
+          {paymentMethods.length === 0 ? null : (
+            <div>
+              <section>
+                {paymentMethods.map(paymentMethod => {
+                  return (
+                    <PaymentTypeCard
+                      key={paymentMethod.id}
+                      paymentMethod={paymentMethod}
+                      {...props}
+                    />
+                  );
+                })}
+              </section>
+            </div>
+          )}
         </div>
     </>
   );
