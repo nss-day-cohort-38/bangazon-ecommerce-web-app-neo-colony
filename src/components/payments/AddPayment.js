@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ApiManager from "../../modules/ApiManager";
 import PaymentTypeCard from "./PaymentTypeCard"
 
@@ -31,6 +31,10 @@ const AddPayment = (props) => {
         ApiManager.create("paymenttypes", paymentTypeCopy)
             .then(ApiManager.getAll("paymenttypes").then(resp => setPaymentMethods(resp)))
   };
+
+  useEffect(() => {
+    ApiManager.getAll("paymenttypes").then(resp => setPaymentMethods(resp))
+  }, [])
 
   return (
     <>
