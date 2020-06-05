@@ -8,6 +8,7 @@ import Login from './auth/Login'
 import Register from './auth/Register'
 import Sell from './sell/Sell'
 import SellProductForm from './sell/SellForm';
+import AddPayment from './payments/AddPayment'
 
 const AppViews = props => {
 
@@ -16,26 +17,29 @@ const AppViews = props => {
             <Route
                 path="/search"
                 render={props => {
-                    return <SearchResults results={props.results} {...props} />
+                    return <SearchResults {...props} />
                 }}
             />
 
             <Route
+                exact
                 path="/"
                 render={props => {
                     return <Home />
                 }}
             />
             <Route
-                path="/profile"
+                exact path="/account"
                 render={props => {
                     return <Profile />
                 }}
             />
             <Route
-                path="/profile"
+                path="/account/addpayment"
                 render={props => {
-                    return <Profile />
+                    return <AddPayment
+                        {...props}
+                    />
                 }}
             />
             <Route

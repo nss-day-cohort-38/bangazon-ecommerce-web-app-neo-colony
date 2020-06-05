@@ -16,7 +16,14 @@ const ProductDetails = props => {
         getDetails("products", props.productId)
     }, [])
 
+    const addToOrder = () => {
+        const newOrderProduct = {
+            product_id: fetchedDetails.id
+        }
 
+        ApiManager.create("orderproducts", newOrderProduct)
+        .then(props.history.push("/"))
+    }
 
 
     return (
@@ -29,7 +36,7 @@ const ProductDetails = props => {
             <div>{fetchedDetails.description}</div>
             <div>{fetchedDetails.location}</div>
             <div>{fetchedDetails.quantity}</div>
-            <div>{fetchedDetails.location}</div>
+            <button onClick={addToOrder}>Add To Order</button>
         </>
     )
 }
