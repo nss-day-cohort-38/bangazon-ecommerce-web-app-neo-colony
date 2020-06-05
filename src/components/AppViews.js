@@ -7,6 +7,7 @@ import ProductDetails from './product/ProductDetails'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import Sell from './sell/Sell'
+import OrderCard from './order/OrderCard'
 
 const AppViews = props => {
 
@@ -41,6 +42,13 @@ const AppViews = props => {
                 path="/sell"
                 render={props => {
                     return <Sell />
+                }}
+            />
+
+            <Route
+                path="/cart"
+                render={props => {
+                    return <OrderCard/>
                 }}
             />
             <Route
