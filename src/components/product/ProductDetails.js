@@ -28,7 +28,6 @@ const ProductDetails = props => {
             <div>{fetchedDetails.description}</div>
             <div>{fetchedDetails.location}</div>
             <div>{fetchedDetails.quantity}</div>
-            <div>{fetchedDetails.location}</div>
         </>
     )
 }

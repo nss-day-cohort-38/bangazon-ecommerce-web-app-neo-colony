@@ -1,4 +1,5 @@
 import React from 'react'
+import {withRouter} from 'react-router-dom'
 
 const ProductCard = props => {
 
@@ -17,4 +18,4 @@ const ProductCard = props => {
     )
 }
 
-export default ProductCard
+export default withRouter(ProductCard)

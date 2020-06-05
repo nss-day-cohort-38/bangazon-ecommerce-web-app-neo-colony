@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from "react-router-dom"
 import './NavBar.css'
 import useSimpleAuth from "../auth/useSimpleAuth";
-import ApiManager from '../../modules/ApiManager'
+
 
 const NavBar = props => {
 
     const [keyword, setKeyword] = useState({ searchInput: "" });
-    const [sResults, setSearchResults] = useState([]);
 
     const { logout } = useSimpleAuth()
 
@@ -21,20 +20,13 @@ const NavBar = props => {
 
     const handleSearch = (evt) => {
         console.log("search pressed")
-
-
         const stringArr = keyword.searchInput.split(" ").join("+");
+        props.history.push({
+            pathname: "/search",
+            state: stringArr
+        })
 
-        ApiManager.queryProducts("title", stringArr)
-            .then(searchResults => {
-                setSearchResults(searchResults);
-                console.log(searchResults)
-                console.log(props.results)
-                props.history.push({
-                    pathname: '/search',
-                    state: {product: sResults}
-                })
-            })
+        
     }
 
     const handleLogout = () => {
