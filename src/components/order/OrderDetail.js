@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
-import PaymnetList from '.paymenttype/PaymentTypeList';
+import AddPayment from '.payments/AddPayment';
 import {Link} from 'react-router-dom';
-import APIManager from '..modules/APIManager'
+import APIManager from '../../modules/APIManager'
 
 const OrderDetail = props => {
     const [paymentTypes, setPaymentType] = useState([]);
@@ -38,7 +38,7 @@ const OrderDetail = props => {
         {paymentTypes.length > 0 ? (
           <div>
             <h3>Select Payment Method</h3>
-            <PaymentTypeList
+            <AddPayment
               select={selectPaymentHandler}
             />{' '}
           </div>
