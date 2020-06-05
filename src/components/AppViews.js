@@ -35,7 +35,9 @@ const AppViews = props => {
             <Route
                 path="/account/addpayment"
                 render={props => {
-                    return <AddPayment />
+                    return <AddPayment 
+                        {...props}
+                    />
                 }}
             />
             <Route

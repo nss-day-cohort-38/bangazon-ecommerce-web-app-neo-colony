@@ -26,7 +26,9 @@ const AddPayment = (props) => {
       expiration_date: exp_date,
     };
 
-    ApiManager.create("paymenttypes", paymentTypeCopy);
+    ApiManager.create("paymenttypes", paymentTypeCopy).then(() => {
+        props.history.push("/account")
+    })
   };
 
   return (
