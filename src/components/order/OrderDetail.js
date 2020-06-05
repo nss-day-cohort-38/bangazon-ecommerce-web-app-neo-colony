@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from "react";
 import PaymnetList from '.paymenttype/PaymentTypeList';
 import {Link} from 'react-router-dom';
-import OrderManager from '..modules/OrderManager'
+import APIManager from '..modules/APIManager'
 
 const OrderDetail = props => {
     const [paymentTypes, setPaymentType] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const paymentTypeHandler = async () => {
-        const types = await OrderManager.getAll('paymnettypes');
+        const types = await APIManager.getAll('paymnettypes');
         setPaymentType(types);
     };
 
@@ -29,7 +29,7 @@ const OrderDetail = props => {
 
     const handleDelete = () => {
         setIsLoading(true);
-        OrderManager.delete(props.orderId).then(() =>
+        APIManager.delete(props.orderId).then(() =>
           props.history.push("/order")
         );
 
@@ -45,7 +45,7 @@ const OrderDetail = props => {
         ) : (
           <div>
             <h3>Add Payment</h3>
-            <Link to="/paymenttype/new">Add Payment</Link>
+            <Link to="/paymenttype">Add Payment</Link>
           </div>
          )}
           <div>
