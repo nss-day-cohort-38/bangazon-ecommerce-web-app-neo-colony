@@ -32,12 +32,6 @@ const AppViews = props => {
                 }}
             />
             <Route
-                path="/profile"
-                render={props => {
-                    return <Profile />
-                }}
-            />
-            <Route
                 path="/sell"
                 render={props => {
                     return <Sell />
