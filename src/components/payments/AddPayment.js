@@ -30,6 +30,7 @@ const AddPayment = (props) => {
 
         ApiManager.create("paymenttypes", paymentTypeCopy)
             .then(ApiManager.getAll("paymenttypes").then(resp => setPaymentMethods(resp)))
+            .then(setIsLoading(false))
   };
 
   useEffect(() => {
