@@ -27,7 +27,7 @@ const SearchResults = props => {
 
     return (
         <div>
-            {sResults.map(res => <ProductCard product={res} />)}
+            {sResults.map(res => <ProductCard product={res} key={res.id}/>)}
         </div>
     )
 }
