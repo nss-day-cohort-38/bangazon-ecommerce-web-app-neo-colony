@@ -5,10 +5,9 @@ const AddPayment = (props) => {
   const [paymenttype, setPaymenttype] = useState({
     merchant_name: "",
     account_number: "",
-    expiration_date: ""
+    expiration_date: "",
   });
-  const [paymentMethods, setPaymentMethods] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFieldChange = (evt) => {
     const stateToChange = { ...paymenttype };
@@ -18,28 +17,21 @@ const AddPayment = (props) => {
 
   const addPaymenttype = (e) => {
     e.preventDefault();
-    setIsLoading(true)
-    
-    const exp_date = new Date(paymenttype.expiration_date)
-    const paymentTypeCopy = {
-        merchant_name: paymenttype.merchant_name,
-        account_number: paymenttype.account_number,
-        expiration_date: exp_date
-    }
+    setIsLoading(true);
 
-    ApiManager.create("paymenttypes", paymentTypeCopy).then(() => {
-        ApiManager.getAll("paymenttypes").then(resp => {
-            console.log(resp)
-            setPaymentMethods(resp)
-        })
-    })
+    const exp_date = new Date(paymenttype.expiration_date);
+    const paymentTypeCopy = {
+      merchant_name: paymenttype.merchant_name,
+      account_number: paymenttype.account_number,
+      expiration_date: exp_date,
+    };
+
+    ApiManager.create("paymenttypes", paymentTypeCopy);
   };
 
   return (
     <form className="form--create-paymenttype" onSubmit={addPaymenttype}>
-      <h1 className="h3 mb-3 font-weight-normal">
-        Add a payment method
-      </h1>
+      <h1 className="h3 mb-3 font-weight-normal">Add a payment method</h1>
       <fieldset>
         <label htmlFor="merchant_name"> Merchant Name </label>
         <input
@@ -52,7 +44,7 @@ const AddPayment = (props) => {
         />
       </fieldset>
       <fieldset>
-        <label htmlFor="account_number"> Account Number  </label>
+        <label htmlFor="account_number"> Account Number </label>
         <input
           onChange={handleFieldChange}
           type="text"
@@ -73,10 +65,11 @@ const AddPayment = (props) => {
         />
       </fieldset>
       <fieldset>
-        <button disabled={isLoading} type="submit">Submit</button>
+        <button disabled={isLoading} type="submit">
+          Submit
+        </button>
       </fieldset>
     </form>
-    <section></section>
   );
 };
 
