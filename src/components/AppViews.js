@@ -26,7 +26,7 @@ const AppViews = props => {
                 }}
             />
             <Route
-                path="/profile"
+                path="/account"
                 render={props => {
                     return <Profile />
                 }}
