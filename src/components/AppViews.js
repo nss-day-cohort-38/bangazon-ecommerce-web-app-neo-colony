@@ -7,6 +7,7 @@ import ProductDetails from './product/ProductDetails'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import Sell from './sell/Sell'
+import AddPayment from './payments/AddPayment'
 
 const AppViews = props => {
 
@@ -26,7 +27,7 @@ const AppViews = props => {
                 }}
             />
             <Route
-                path="/account"
+                exact path="/account"
                 render={props => {
                     return <Profile />
                 }}
@@ -34,7 +35,7 @@ const AppViews = props => {
             <Route
                 path="/account/addpayment"
                 render={props => {
-                    return <Profile />
+                    return <AddPayment />
                 }}
             />
             <Route
