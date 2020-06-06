@@ -23,6 +23,10 @@ const ProductDetails = props => {
 
         ApiManager.create("orderproducts", newOrderProduct)
         .then(props.history.push("/"))
+
+        fetchedDetails.quantity -= 1
+
+        ApiManager.update("products", fetchedDetails.id, fetchedDetails)
     }
 
 
