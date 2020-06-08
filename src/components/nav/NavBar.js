@@ -19,7 +19,6 @@ const NavBar = props => {
 
 
     const handleSearch = (evt) => {
-        console.log("search pressed")
         const stringArr = keyword.searchInput.split(" ").join("+");
         props.history.push({
             pathname: "/search",
