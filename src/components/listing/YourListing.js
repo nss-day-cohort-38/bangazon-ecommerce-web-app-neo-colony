@@ -5,10 +5,14 @@ import ProductCard from '../product/ProductCard'
 const ProductListings = props => {
     const [myProducts, setMyProducts] = useState([])
 
-    useEffect(() => {
+    const getSellersProducts = () => {
         ApiManager.getAll("products?seller=true").then(resp => {
             setMyProducts(resp)
         })
+    }
+
+    useEffect(() => {
+        getSellersProducts();
     }, [])
 
     return (
@@ -17,6 +21,7 @@ const ProductListings = props => {
             <ProductCard 
                 key={product.id}
                 product={product}
+                getSellersProducts={getSellersProducts}
             />
             ))}
         </div>
