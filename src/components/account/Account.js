@@ -7,46 +7,46 @@ const MyAccount = (props) => {
   
     const accountSettings = () => {
       ApiManager.getAll("customers").then(allUserData => {
+          console.log(allUserData)
         const accountInfoObject = {
           id: allUserData.id,
-          first_name: allUserData.first_name,
-          last_name: allUserData.last_name,
-          address: allUserData.address,
-          phone: allUserData.phone_number,
+          first_name: allUserData[0].user.first_name,
+          last_name: allUserData[0].user.last_name,
+          address: allUserData[0].address,
+          phone: allUserData[0].phone_number,
         };
         setAccountInfo(accountInfoObject);
       });
     };
   
-    // const handleFieldChange = (evt) => {
-    //   const stateToChange = { ...accountInfo };
-    //   stateToChange[evt.target.id] = evt.target.value;
-    //   setAccountInfo(stateToChange);
-    // };
+    const handleFieldChange = (evt) => {
+      const stateToChange = { ...accountInfo };
+      stateToChange[evt.target.id] = evt.target.value;
+      setAccountInfo(stateToChange);
+    };
   
-    // const updateAccount = (evt) => {
-    //   evt.preventDefault();
+    const updateAccount = (evt) => {
+      evt.preventDefault();
   
-    //   ApiManager.update('customers', accountInfo.id, accountInfo).then(() => toggleEdit());
-    // };
+      ApiManager.update('customers', accountInfo.id, accountInfo).then(() => Edit());
+    };
   
-    // const Edit = () => {
-    //   if (props.editReset == true) {
-    //     props.editReset = false;
-    //     setIsEditing(false);
-    //   } else {
-    //   setIsEditing(!isEditing);
-    //   }
-    // };
+    const Edit = () => {
+      if (props.editReset == true) {
+        props.editReset = false;
+        setIsEditing(false);
+      } else {
+      setIsEditing(!isEditing);
+      }
+    };
   
     useEffect(() => {
     accountSettings();
       
-    //   if (props.editReset == true) {
-    //     Edit();
-    //   }
-    });
-    // , [props.editReset]);
+    if (props.editReset == true) {
+        Edit();
+      }
+    }, [props.editReset]);
   
     return !isEditing ? (
       <>
@@ -61,7 +61,7 @@ const MyAccount = (props) => {
           <button
             type="button"
             onClick={() => {
-            //   Edit();
+              Edit();
             }}
           >
             Edit
@@ -94,25 +94,26 @@ const MyAccount = (props) => {
     ) : (
       <div className="content">
         <h1>Account Info:</h1>
-        <button
-          type="button"
-          onClick={() => {
-            // Edit();
-          }}
-        >
-          Go Back
-        </button>
-        <p>First Name: {accountInfo.firstName}</p>
-        <form >
-        {/* onSubmit={updateAccount} */}
-          <fieldset>
-            <label htmlFor="lastName">Last Name:</label>
+        <form onSubmit={updateAccount}>
+        <fieldset>
+            <label htmlFor="first_name">First Name:</label>
             <input
               type="text"
               required
-            //   onChange={handleFieldChange}
-              id="lastName"
-              value={accountInfo.lastName}
+              onChange={handleFieldChange}
+              id="first_name"
+              value={accountInfo.first_name}
+            />
+          </fieldset>
+
+          <fieldset>
+            <label htmlFor="last_name">Last Name:</label>
+            <input
+              type="text"
+              required
+              onChange={handleFieldChange}
+              id="last_name"
+              value={accountInfo.last_name}
             />
           </fieldset>
           <fieldset>
@@ -120,7 +121,7 @@ const MyAccount = (props) => {
             <input
               type="text"
               required
-            //   onChange={handleFieldChange}
+              onChange={handleFieldChange}
               id="address"
               value={accountInfo.address}
             />
@@ -130,13 +131,21 @@ const MyAccount = (props) => {
             <input
               type="text"
               required
-            //   onChange={handleFieldChange}
+              onChange={handleFieldChange}
               id="phone"
               value={accountInfo.phone}
             />
           </fieldset>
           <fieldset>
-            <button type="submit">Save Changes</button>
+            <button type="submit">Update </button>
+            <button
+          type="button"
+          onClick={() => {
+            Edit();
+          }}
+        >
+         Back
+        </button>
           </fieldset>
         </form>
       </div>
