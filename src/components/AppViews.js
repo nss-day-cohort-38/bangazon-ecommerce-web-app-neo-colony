@@ -8,6 +8,7 @@ import Login from './auth/Login'
 import Register from './auth/Register'
 import Sell from './sell/Sell'
 import OrderCard from './order/OrderCard'
+import SellProductForm from './sell/SellForm';
 import AddPayment from './payments/AddPayment'
 import Categories from './categories/Categories'
 
@@ -52,7 +53,7 @@ const AppViews = props => {
             <Route
                 path="/sell"
                 render={props => {
-                    return <Sell />
+                    return <SellProductForm {...props}/>
                 }}
             />
 
