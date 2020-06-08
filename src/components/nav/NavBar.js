@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from "react-router-dom"
+import { Link, withRouter } from "react-router-dom"
 import './NavBar.css'
 import useSimpleAuth from "../auth/useSimpleAuth";
 
+
 const NavBar = props => {
+
+    const [keyword, setKeyword] = useState({ searchInput: "" });
 
     const { logout } = useSimpleAuth()
 
     const handleFieldChange = evt => {
-        const stateToChange = { ...props.keyword };
+        const stateToChange = { ...keyword };
         stateToChange[evt.target.id] = evt.target.value;
-        props.setKeyword(stateToChange);
+        setKeyword(stateToChange);
     };
+
+    
 
     const handleSearch = (evt) => {
         console.log("search pressed")
+        const stringArr = keyword.searchInput.split(" ").join("+");
+        props.history.push({
+            pathname: "/search",
+            state: stringArr
+        })
 
-
-        const stringArr = props.keyword.searchInput.split(" ").join("+");
-
-        fetch(`http://localhost:8000/products?title=${stringArr}`)
-            .then(resp => resp.json())
-            .then(searchResults => {
-                props.setResults(searchResults);
-                console.log(props.keyword.searchInput)
-                console.log(props.results)
-
-            });
-    };
+        
+    }
 
     const handleLogout = () => {
         logout();
@@ -61,4 +61,4 @@ const NavBar = props => {
     )
 }
 
-export default NavBar
+export default withRouter(NavBar)

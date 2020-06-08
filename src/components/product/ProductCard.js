@@ -1,4 +1,5 @@
 import React from 'react'
+import {withRouter} from 'react-router-dom'
 
 const ProductCard = props => {
 
@@ -8,7 +9,7 @@ const ProductCard = props => {
 
     return (
         <>
-            <section onClick={seeDetails}>
+            <section className="productCard" onClick={seeDetails}>
                 <div>{props.product.title}</div>
                 <div>{props.product.price}</div>
                 <div>{props.product.quantity}</div>
@@ -17,4 +18,4 @@ const ProductCard = props => {
     )
 }
 
-export default ProductCard
+export default withRouter(ProductCard)
