@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ApiManager from '../../modules/ApiManager';
 
-const MyAccount = (props) => {
+const Account = (props) => {
     const [accountInfo, setAccountInfo] = useState("");
     const [isEditing, setIsEditing] = useState(false);
   
@@ -9,11 +9,12 @@ const MyAccount = (props) => {
       ApiManager.getAll("customers").then(allUserData => {
           console.log(allUserData)
         const accountInfoObject = {
-          id: allUserData.id,
+          id: allUserData[0].id,
           first_name: allUserData[0].user.first_name,
           last_name: allUserData[0].user.last_name,
           address: allUserData[0].address,
-          phone: allUserData[0].phone_number,
+          phone_number: allUserData[0].phone_number,
+          email: allUserData[0].email,
         };
         setAccountInfo(accountInfoObject);
       });
@@ -152,4 +153,4 @@ const MyAccount = (props) => {
     );
   };
   
-  export default MyAccount;
+  export default Account;
