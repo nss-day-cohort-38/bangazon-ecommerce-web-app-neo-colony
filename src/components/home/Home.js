@@ -7,7 +7,7 @@ const Home = props => {
     const [latestProducts, setLatestProducts] = useState([])
 
     useEffect(() => {
-        ApiManager.getAll("products?total=20").then(resp => {
+        ApiManager.getAllNoToken("products?total=20").then(resp => {
             setLatestProducts(resp)
         })
     }, [])

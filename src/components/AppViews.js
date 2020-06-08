@@ -2,13 +2,14 @@ import React from 'react'
 import { Route, Redirect } from "react-router-dom";
 import SearchResults from './search/SearchResults'
 import Home from './home/Home'
-import Profile from './account/Account'
 import ProductDetails from './product/ProductDetails'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import Sell from './sell/Sell'
 import Account from './account/Account';
+import SellProductForm from './sell/SellForm';
 import AddPayment from './payments/AddPayment'
+import Categories from './categories/Categories'
 
 const AppViews = props => {
 
@@ -18,6 +19,12 @@ const AppViews = props => {
                 path="/search"
                 render={props => {
                     return <SearchResults {...props} />
+                }}
+            />
+            <Route
+                path="/categories"
+                render={props => {
+                    return <Categories {...props} />
                 }}
             />
 
@@ -45,7 +52,7 @@ const AppViews = props => {
             <Route
                 path="/sell"
                 render={props => {
-                    return <Sell />
+                    return <SellProductForm {...props}/>
                 }}
             />
             <Route
