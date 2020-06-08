@@ -36,5 +36,9 @@
 }
 
 .searchBar:hover {
+    color: black;
+}
+
+.searchBar:hover {
     cursor: auto;
 }
