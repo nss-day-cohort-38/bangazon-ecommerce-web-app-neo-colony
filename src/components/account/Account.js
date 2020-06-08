@@ -61,7 +61,7 @@ const MyAccount = (props) => {
           <button
             type="button"
             onClick={() => {
-              Edit();
+            //   Edit();
             }}
           >
             Edit
@@ -97,19 +97,20 @@ const MyAccount = (props) => {
         <button
           type="button"
           onClick={() => {
-            Edit();
+            // Edit();
           }}
         >
           Go Back
         </button>
         <p>First Name: {accountInfo.firstName}</p>
-        <form onSubmit={updateAccount}>
+        <form >
+        {/* onSubmit={updateAccount} */}
           <fieldset>
             <label htmlFor="lastName">Last Name:</label>
             <input
               type="text"
               required
-              onChange={handleFieldChange}
+            //   onChange={handleFieldChange}
               id="lastName"
               value={accountInfo.lastName}
             />
@@ -119,7 +120,7 @@ const MyAccount = (props) => {
             <input
               type="text"
               required
-              onChange={handleFieldChange}
+            //   onChange={handleFieldChange}
               id="address"
               value={accountInfo.address}
             />
@@ -129,7 +130,7 @@ const MyAccount = (props) => {
             <input
               type="text"
               required
-              onChange={handleFieldChange}
+            //   onChange={handleFieldChange}
               id="phone"
               value={accountInfo.phone}
             />
