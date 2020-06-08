@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import AddPayment from '.payments/AddPayment';
+import AddPayment from '../payments/AddPayment';
 import {Link} from 'react-router-dom';
 import ApiManager from '../../modules/ApiManager'
 
@@ -45,7 +45,7 @@ const OrderDetail = props => {
         ) : (
           <div>
             <h3>Add Payment</h3>
-            <Link to="/paymenttype">Add Payment</Link>
+            <Link to="/paymenttypes">Add Payment</Link>
           </div>
          )}
           <div>
