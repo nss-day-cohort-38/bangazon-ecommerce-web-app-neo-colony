@@ -16,7 +16,7 @@ const NavBar = props => {
         setKeyword(stateToChange);
     };
 
-    
+
 
     const handleSearch = (evt) => {
         console.log("search pressed")
@@ -26,7 +26,7 @@ const NavBar = props => {
             state: stringArr
         })
 
-        
+
     }
 
     const handleLogout = () => {
@@ -36,19 +36,21 @@ const NavBar = props => {
     return (
         <>
             <div className="nav">
-                <input
-                    id="searchInput"
-                    className="nav-item"
-                    type="text"
-                    placeholder="search a product"
-                    onChange={handleFieldChange}
-                    onKeyUp={evt => evt.key === "Enter" ? handleSearch(evt) : null} />
+                    <input
+                        id="searchInput"
+                        className="nav-item"
+                        type="text"
+                        placeholder="search a product"
+                        onChange={handleFieldChange}
+                        onKeyUp={evt => evt.key === "Enter" ? handleSearch(evt) : null} />
+
                 <div>
 
 
                     <div id="nav-links">
                         <Link className="nav-item" to="/">b a n g a z o n</Link>
                         <Link className="nav-item" to="/sell">sell</Link>
+                        <Link className="nav-item" to="/categories">categories</Link>
                         <Link className="nav-item" to="/account">account</Link>
                         <Link className="nav-item" to="/cart">cart</Link>
                         <Link onClick={handleLogout} className="nav-item" to="/login">logout</Link>
