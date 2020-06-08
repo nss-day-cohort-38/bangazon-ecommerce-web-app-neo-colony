@@ -9,7 +9,7 @@ const ProductCard = props => {
 
     return (
         <>
-            <section onClick={seeDetails}>
+            <section className="productCard" onClick={seeDetails}>
                 <div>{props.product.title}</div>
                 <div>{props.product.price}</div>
                 <div>{props.product.quantity}</div>
