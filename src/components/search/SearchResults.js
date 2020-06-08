@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ProductCard from '../product/ProductCard'
 import ApiManager from '../../modules/ApiManager'
+import "../../styles/Search.css"
 
 const SearchResults = props => {
 
@@ -27,7 +28,10 @@ const SearchResults = props => {
     }, [props.location.state])
 
     return (
-        <div>
+        <div className="resultsContainer">
+            <div className="results-header">
+                <h1>Product Results</h1>
+            </div>
             {sResults.map(res => <ProductCard product={res} key={res.id}/>)}
         </div>
     )
