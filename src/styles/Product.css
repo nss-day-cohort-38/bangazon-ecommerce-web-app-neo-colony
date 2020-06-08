@@ -1,0 +1,16 @@
+.productCard {
+    border: 2px solid gray;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    min-width: 200px;
+}
+
+.productCard:hover {
+    cursor: pointer;
+    border: 2px solid rgb(240, 165, 5);
+}
+
+.productInfo {
+    max-width: 110px;
+}
