@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from "react-router-dom"
-import './NavBar.css'
+import '../../styles/NavBar.css'
 import useSimpleAuth from "../auth/useSimpleAuth";
 
 
