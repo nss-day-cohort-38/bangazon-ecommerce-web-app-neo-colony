@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ApiManager from "../../modules/ApiManager";
+import ProductTypeListOptions from "./ProductTypeListOptions"
 
 const SellProductForm = (props) => {
+  const [productTypes, setProductTypes] = useState([])
   const [newProduct, setNewProduct] = useState({
     title: "",
     price: "",
@@ -9,6 +11,7 @@ const SellProductForm = (props) => {
     quantity: "",
     product_type_id: 0,
     location: "",
+    image: "#"
   });
 
   const handleFieldChange = (evt) => {
@@ -16,6 +19,12 @@ const SellProductForm = (props) => {
     stateToChange[evt.target.id] = evt.target.value;
     setNewProduct(stateToChange);
   };
+
+  const handleFocusSelect = (event) => {
+    const stateToChange = { ...newProduct }
+    stateToChange.product_type_id = parseInt(event.target.value)
+    setNewProduct(stateToChange)
+}
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,9 +36,10 @@ const SellProductForm = (props) => {
       quantity: newProduct.quantity,
       location: newProduct.location,
       image: newProduct.image,
+      product_type_id: newProduct.product_type_id
     };
 
-    ApiManager.create("products", newProduct).then(() =>
+    ApiManager.create("products", productObj).then(() =>
       props.history.push("/")
     );
   };
@@ -37,6 +47,10 @@ const SellProductForm = (props) => {
   const handleCancel = () => {
     props.history.push("/");
   };
+
+  useEffect(() => {
+    ApiManager.getAll("producttypes").then(response => setProductTypes(response))
+}, [])
 
   return (
     <>
@@ -84,6 +98,31 @@ const SellProductForm = (props) => {
             required
           />
         </fieldset>
+        <fieldset>
+          <label>Location</label>
+          <input
+            type="text"
+            id="location"
+            className="form-control"
+            placeholder="Product Location"
+            onChange={handleFieldChange}
+            required
+          />
+        </fieldset>
+        <fieldset>
+                    <label>Product Type</label>
+                    <select className="custom-select" id="inputGroupSelect01" onChange={handleFocusSelect}>
+                        <option value="0" >Please select</option>
+                        {productTypes.length > 0 && productTypes.map((listObject) => {
+                            return <ProductTypeListOptions
+                            key={listObject.id}
+                            value={listObject.id}
+                            listObject={listObject}
+                            {...props}
+                            />
+                        })}
+                    </select>
+                </fieldset>
         <fieldset>
           <button type="button" onClick={handleSubmit}>
             Sell
