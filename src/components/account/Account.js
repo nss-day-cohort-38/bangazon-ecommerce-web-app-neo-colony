@@ -14,7 +14,7 @@ const Account = (props) => {
           last_name: allUserData[0].user.last_name,
           address: allUserData[0].address,
           phone_number: allUserData[0].phone_number,
-          email: allUserData[0].email,
+          email: allUserData[0].user.email
         };
         setAccountInfo(accountInfoObject);
       });
@@ -56,7 +56,7 @@ const Account = (props) => {
           <p>First Name: {accountInfo.first_name}</p>
           <p>Last Name: {accountInfo.last_name}</p>
           <p>Address: {accountInfo.address}</p>
-          <p>Phone Number: {accountInfo.phone}</p>
+          <p>Phone Number: {accountInfo.phone_number}</p>
         </div>
         <div className="content">
           <button
@@ -128,13 +128,13 @@ const Account = (props) => {
             />
           </fieldset>
           <fieldset>
-            <label htmlFor="phone">Phone Number:</label>
+            <label htmlFor="phone_number">Phone Number:</label>
             <input
               type="text"
               required
               onChange={handleFieldChange}
-              id="phone"
-              value={accountInfo.phone}
+              id="phone_number"
+              value={accountInfo.phone_number}
             />
           </fieldset>
           <fieldset>
