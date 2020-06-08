@@ -32,14 +32,13 @@ const ProductDetails = props => {
 
     return (
         <>
-            <div>{fetchedDetails.id}</div>
 
             {/* <img src={require(`${fetchedDetails.image_path}`)} /> */}
             <div>{fetchedDetails.title}</div>
             <div>{fetchedDetails.price}</div>
             <div>{fetchedDetails.description}</div>
             <div>{fetchedDetails.location}</div>
-            <div>{fetchedDetails.quantity}</div>
+            <div>quantity: {fetchedDetails.quantity}</div>
             <button onClick={addToOrder}>Add To Order</button>
         </>
     )
