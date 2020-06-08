@@ -56,6 +56,18 @@ export default {
         })
     },
 
+    updateOrder(updateItem) {
+        return fetch(`${apiUrl}/orders`, {
+            "method": "PUT",
+            "headers": {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization": `Token ${sessionStorage.getItem("ecommerceapi-token")}`
+            },
+            body: JSON.stringify(updateItem)
+        })
+    },
+
     delete(route, id) {
         return fetch(`${apiUrl}/${route}/${id}`, {
             "method": "DELETE",

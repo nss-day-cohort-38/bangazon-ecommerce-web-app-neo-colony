@@ -8,7 +8,7 @@ const OrderDetail = props => {
     const [isLoading, setIsLoading] = useState(true);
 
     const paymentTypeHandler = async () => {
-        const types = await ApiManager.getAll('paymnettypes');
+        const types = await ApiManager.getAll('paymenttypes');
         setPaymentType(types);
     };
 
@@ -32,22 +32,14 @@ const OrderDetail = props => {
         ApiManager.delete(props.orderId).then(() =>
           props.history.push("/order")
         );
+    }
 
     return (
       <div>
-        {paymentTypes.length > 0 ? (
-          <div>
-            <h3>Select Payment Method</h3>
-            <AddPayment
-              select={selectPaymentHandler}
-            />{' '}
-          </div>
-        ) : (
           <div>
             <h3>Add Payment</h3>
             <Link to="/paymenttypes">Add Payment</Link>
           </div>
-         )}
           <div>
             <button
               type="button"
@@ -61,7 +53,7 @@ const OrderDetail = props => {
           </div>
       </div>
     );
-};
-}
+ };
+
 
 export default OrderDetail;

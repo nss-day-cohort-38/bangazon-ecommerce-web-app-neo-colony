@@ -7,7 +7,7 @@ import ProductDetails from './product/ProductDetails'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import Sell from './sell/Sell'
-import OrderCard from './order/OrderCard'
+import Order from './order/Order'
 import SellProductForm from './sell/SellForm';
 import AddPayment from './payments/AddPayment'
 import Categories from './categories/Categories'
@@ -58,9 +58,9 @@ const AppViews = props => {
             />
 
             <Route
-                path="/orders"
+                path="/cart"
                 render={props => {
-                    return <OrderCard/>
+                    return <Order/>
                 }}
             />
             <Route
