@@ -11,8 +11,8 @@ const ProductCard = props => {
         <>
             <section className="productCard" onClick={seeDetails}>
                 <div>{props.product.title}</div>
-                <div>{props.product.price}</div>
-                <div>{props.product.quantity}</div>
+                <div>Price: ${props.product.price}</div>
+                <div>Quantity: {props.product.quantity}</div>
             </section>
         </>
     )
