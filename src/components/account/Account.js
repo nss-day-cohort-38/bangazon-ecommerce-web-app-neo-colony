@@ -5,7 +5,7 @@ const MyAccount = (props) => {
     const [accountInfo, setAccountInfo] = useState("");
     const [isEditing, setIsEditing] = useState(false);
   
-    const generateAccount = () => {
+    const accountSettings = () => {
       ApiManager.getAll("customers").then(allUserData => {
         const accountInfoObject = {
           id: allUserData.id,
@@ -18,35 +18,35 @@ const MyAccount = (props) => {
       });
     };
   
-    const handleFieldChange = (evt) => {
-      const stateToChange = { ...accountInfo };
-      stateToChange[evt.target.id] = evt.target.value;
-      setAccountInfo(stateToChange);
-    };
+    // const handleFieldChange = (evt) => {
+    //   const stateToChange = { ...accountInfo };
+    //   stateToChange[evt.target.id] = evt.target.value;
+    //   setAccountInfo(stateToChange);
+    // };
   
-    const updateAccount = (evt) => {
-      evt.preventDefault();
+    // const updateAccount = (evt) => {
+    //   evt.preventDefault();
   
-      ApiManager.update('customers', accountInfo.id, accountInfo).then(() => toggleEdit());
-    };
+    //   ApiManager.update('customers', accountInfo.id, accountInfo).then(() => toggleEdit());
+    // };
   
-    const toggleEdit = () => {
-      if (props.editReset == true) {
-        props.editReset = false;
-        setIsEditing(false);
-      } else {
-      setIsEditing(!isEditing);
-      }
-    };
+    // const Edit = () => {
+    //   if (props.editReset == true) {
+    //     props.editReset = false;
+    //     setIsEditing(false);
+    //   } else {
+    //   setIsEditing(!isEditing);
+    //   }
+    // };
   
     useEffect(() => {
-      if (accountInfo.id == "") {
-        generateAccount();
-      }
-      if (props.editReset == true) {
-        toggleEdit();
-      }
-    }, [props.editReset]);
+    accountSettings();
+      
+    //   if (props.editReset == true) {
+    //     Edit();
+    //   }
+    });
+    // , [props.editReset]);
   
     return !isEditing ? (
       <>
@@ -61,7 +61,7 @@ const MyAccount = (props) => {
           <button
             type="button"
             onClick={() => {
-              toggleEdit();
+              Edit();
             }}
           >
             Edit
@@ -97,7 +97,7 @@ const MyAccount = (props) => {
         <button
           type="button"
           onClick={() => {
-            toggleEdit();
+            Edit();
           }}
         >
           Go Back
@@ -143,4 +143,3 @@ const MyAccount = (props) => {
   };
   
   export default MyAccount;
-
