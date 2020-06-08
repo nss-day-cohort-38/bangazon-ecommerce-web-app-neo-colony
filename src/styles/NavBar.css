@@ -1,18 +1,40 @@
 .nav {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     background-color: rgba(57, 255, 2, 0.445);
-    justify-content: flex-start;
     padding-bottom: 10px;
+    min-height: 50px;
 }
 
-.nav-links {
-    display: flex;
-    flex-direction: row;
-    
-    
+.navContent {
+    margin-right: 100px;
 }
 
 .nav-item {
     padding: 5px 5px 0px 5px;
+    text-decoration: none;
+    color: rgba(70, 68, 68, 0.856);
+}
+
+.nav-links {
+    margin-top: 5px;
+}
+
+.nav-item:visited, .nav-item:hover {
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    cursor: pointer;
+    color: rgb(240, 165, 5);
+}
+
+.searchBar {
+    width: 300px;
+    margin-top: 10px;
+}
+
+.searchBar:hover {
+    cursor: auto;
 }
