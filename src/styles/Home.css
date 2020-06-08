@@ -1,0 +1,12 @@
+.homepageProducts {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+}
+
+.productCard {
+    border: 2px solid gray;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
