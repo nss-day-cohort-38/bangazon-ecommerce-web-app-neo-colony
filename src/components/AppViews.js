@@ -11,6 +11,7 @@ import Order from './order/Order'
 import SellProductForm from './sell/SellForm';
 import AddPayment from './payments/AddPayment'
 import Categories from './categories/Categories'
+import ProductListings from './listing/YourListing'
 
 const AppViews = props => {
 
@@ -61,6 +62,12 @@ const AppViews = props => {
                 path="/cart"
                 render={props => {
                     return <Order/>
+                }}
+            />
+            <Route
+                path="/myproducts"
+                render={props => {
+                    return <ProductListings {...props}/>
                 }}
             />
             <Route
