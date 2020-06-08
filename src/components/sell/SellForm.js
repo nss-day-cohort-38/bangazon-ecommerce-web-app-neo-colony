@@ -28,7 +28,6 @@ const SellProductForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const productObj = {
       title: newProduct.title,
       price: newProduct.price,
@@ -37,11 +36,18 @@ const SellProductForm = (props) => {
       location: newProduct.location,
       image: newProduct.image,
       product_type_id: newProduct.product_type_id
-    };
+    }
+
+    if (newProduct.title === "" || newProduct.price === "" || newProduct.description === "" || newProduct.quantity === "" || newProduct.image === "") {
+      window.alert("Please make sure all fields are filled.")
+  } else if (newProduct.product_type_id === 0) {
+      window.alert("Please select a product type")
+  } else {
+
 
     ApiManager.create("products", productObj).then(() =>
       props.history.push("/")
-    );
+    )}
   };
 
   const handleCancel = () => {
@@ -111,7 +117,7 @@ const SellProductForm = (props) => {
         </fieldset>
         <fieldset>
                     <label>Product Type</label>
-                    <select className="custom-select" id="inputGroupSelect01" onChange={handleFocusSelect}>
+                    <select className="custom-select" id="inputGroupSelect01" required onChange={handleFocusSelect}>
                         <option value="0" >Please select</option>
                         {productTypes.length > 0 && productTypes.map((listObject) => {
                             return <ProductTypeListOptions
