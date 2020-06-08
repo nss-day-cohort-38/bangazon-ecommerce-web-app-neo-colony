@@ -10,10 +10,15 @@ const CategoryCard = props => {
 
     return (
         <>
-        
-        <div>{props.category.name}</div>
-        <div>{total}</div>
-        {first3.map(res => <div>{res.title}</div>)}
+        <div className="categoryCard">
+            <div className="info-stack">
+                <div>{props.category.name}</div>
+                <div className="total">({total})</div>
+            </div>
+            <div className="category-products">
+                {first3.map(res => <div>{res.title}</div>)}
+            </div>
+        </div>
         
         </>
     )
