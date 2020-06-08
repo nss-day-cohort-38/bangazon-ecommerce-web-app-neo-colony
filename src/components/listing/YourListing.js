@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ApiManager from "../../modules/ApiManager";
 import ProductCard from '../product/ProductCard'
+import "../../styles/Listings.css"
 
 const ProductListings = props => {
     const [myProducts, setMyProducts] = useState([])
@@ -16,7 +17,10 @@ const ProductListings = props => {
     }, [])
 
     return (
-        <div>
+        <div className="listings">
+            <div className="listings-header">
+                <h1>Your Listings</h1>
+            </div>
             {myProducts.map(product => (
             <ProductCard 
                 key={product.id}

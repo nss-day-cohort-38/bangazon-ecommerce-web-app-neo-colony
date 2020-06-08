@@ -4,6 +4,7 @@
     padding: 10px;
     border-radius: 10px;
     min-width: 200px;
+    width: 200px;
 }
 
 .productCard:hover {
