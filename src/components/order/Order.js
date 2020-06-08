@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import OrderCard from "./OrderCard";
-import APIManager from "../../modules/APIManager";
+import APIManager from "../../modules/ApiManager";
 
 const OrderList = (props) => {
   const [orders, setOrders] = useState([]);
@@ -20,13 +20,13 @@ const OrderList = (props) => {
    <div> <button 
           type="button" 
           onClick={() => {
-            props.history.push(`/neworder`);
+            props.history.push(`/orders`);
           }}
           >Create New Order
           </button> </div>
         <div>
           {orders.map((order) =>(
-              <OrderCard key={orderid} order={order} {...props} />
+              <OrderCard key={order.id} order={order} {...props} />
           ))}
         </div>
        </div>
