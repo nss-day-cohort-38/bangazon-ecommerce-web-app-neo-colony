@@ -14,9 +14,11 @@ const Home = props => {
 
     return(
         <div >
+          <div className="homeLogo">
             <h1>
-                HOME
+                BANGAZON
             </h1>
+          </div>
 
             {latestProducts.length === 0 ? null : (
             <div>
