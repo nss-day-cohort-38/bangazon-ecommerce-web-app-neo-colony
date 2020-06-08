@@ -12,11 +12,7 @@ const Categories = props => {
         // fetchCategories();
         ApiManager.getAll("producttypes")
             .then(resp => {
-
                 setFetched(resp)
-
-                console.log(resp, "RESP, LINE 16")
-                console.log(fetched, "LINE 17")
             })
     }, [])
 
@@ -26,7 +22,6 @@ const Categories = props => {
                 <h1>Categories</h1>
             </div>
             {fetched.map(res => <CategoryCard category={res} key={res.id} />)}
-            {/* {fetched[0].name} */}
         </div>
     )
 
