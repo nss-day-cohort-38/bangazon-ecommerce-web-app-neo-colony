@@ -22,6 +22,15 @@ export default {
         })
             .then(response => response.json())
     },
+    getAllNoToken(route) {
+        return fetch(`${apiUrl}/${route}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
+            .then(response => response.json())
+    },
 
     create(route, createItem) {
         return fetch(`${apiUrl}/${route}`, {

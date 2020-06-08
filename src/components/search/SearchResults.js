@@ -18,6 +18,7 @@ const SearchResults = props => {
             .then(searchResults => {
                 console.log("searchresults page hit")
                 setSearchResults(searchResults);
+                console.log(sResults)
             })
     }
 

@@ -8,6 +8,7 @@ import Login from './auth/Login'
 import Register from './auth/Register'
 import Sell from './sell/Sell'
 import AddPayment from './payments/AddPayment'
+import Categories from './categories/Categories'
 
 const AppViews = props => {
 
@@ -17,6 +18,12 @@ const AppViews = props => {
                 path="/search"
                 render={props => {
                     return <SearchResults {...props} />
+                }}
+            />
+            <Route
+                path="/categories"
+                render={props => {
+                    return <Categories {...props} />
                 }}
             />
 
