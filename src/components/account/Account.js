@@ -2,13 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ApiManager from '../../modules/ApiManager';
 
 const MyAccount = (props) => {
-    const [accountInfo, setAccountInfo] = useState({
-      id: "",
-      first_name: "",
-      last_name: "",
-      address: "",
-      phone: "",
-    });
+    const [accountInfo, setAccountInfo] = useState("");
     const [isEditing, setIsEditing] = useState(false);
   
     const generateAccount = () => {
