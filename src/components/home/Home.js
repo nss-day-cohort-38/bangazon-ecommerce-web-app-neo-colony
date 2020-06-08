@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ApiManager from '../../modules/ApiManager'
+import ProductCard from '../product/ProductCard'
 
 const Home = props => {
     const [latestProducts, setLatestProducts] = useState([])
@@ -23,6 +24,7 @@ const Home = props => {
                   return (
                     <ProductCard
                       key={product.id}
+                      product={product}
                       {...props}
                     />
                   );
