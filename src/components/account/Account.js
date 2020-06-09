@@ -52,107 +52,115 @@ const Account = (props) => {
   
     return !isEditing ? (
       <>
-        <div className="content">
+        <div className="profileContainer">
           <h1>My Account:</h1>
-          <p>First Name: {accountInfo.first_name}</p>
-          <p>Last Name: {accountInfo.last_name}</p>
-          <p>Address: {accountInfo.address}</p>
-          <p>Phone Number: {accountInfo.phone_number}</p>
-        </div>
-        <div className="content">
-          <button
-            type="button"
-            onClick={() => {
-              Edit();
-            }}
-          >
-            Edit
-          </button>
-        </div>
-        <div className="content">
-          {/* <button
-            type="button"
-            onClick={() => {
-              props.history.push({
-                  pathname:"/paymenttypes",
-                  state: {editReset: true},
-              })
-            }}
-          >
-            Edit Payment Options
-          </button> */}
-        </div>
-        <div className="content">
-          {/* <button
-            type="button"
-            onClick={() => {
-              props.history.push("/order");
-            }}
-          >
-            View Order History
-          </button> */}
+          <div className="profileCard">
+            <div className="content">
+              <p>First Name: {accountInfo.first_name}</p>
+              <p>Last Name: {accountInfo.last_name}</p>
+              <p>Address: {accountInfo.address}</p>
+              <p>Phone Number: {accountInfo.phone_number}</p>
+            </div>
+            <div className="content">
+              <button
+                type="button"
+                onClick={() => {
+                  Edit();
+                }}
+              >
+                Edit
+              </button>
+              <Link to="/account/addpayment">
+                <button>Add Payment</button>
+              </Link>
+            </div>
+            <div className="content">
+              {/* <button
+                type="button"
+                onClick={() => {
+                  props.history.push({
+                      pathname:"/paymenttypes",
+                      state: {editReset: true},
+                  })
+                }}
+              >
+                Edit Payment Options
+              </button> */}
+            </div>
+            <div className="content">
+              {/* <button
+                type="button"
+                onClick={() => {
+                  props.history.push("/order");
+                }}
+              >
+                View Order History
+              </button> */}
+            </div>
+          </div>  
         </div>
       </>
     ) : (
-      <div className="content">
+      <div className="profileContainer">
         <h1>Account Info:</h1>
-        <form onSubmit={updateAccount}>
-        <fieldset>
-            <label htmlFor="first_name">First Name:</label>
-            <input
-              type="text"
-              required
-              onChange={handleFieldChange}
-              id="first_name"
-              value={accountInfo.first_name}
-            />
-          </fieldset>
+        <div className="profileCard">
+          <div className="content">
+            <form onSubmit={updateAccount}>
+            <fieldset>
+                <label htmlFor="first_name">First Name:</label>
+                <input
+                  type="text"
+                  required
+                  onChange={handleFieldChange}
+                  id="first_name"
+                  value={accountInfo.first_name}
+                />
+              </fieldset>
 
-          <fieldset>
-            <label htmlFor="last_name">Last Name:</label>
-            <input
-              type="text"
-              required
-              onChange={handleFieldChange}
-              id="last_name"
-              value={accountInfo.last_name}
-            />
-          </fieldset>
-          <fieldset>
-            <label htmlFor="address">Address:</label>
-            <input
-              type="text"
-              required
-              onChange={handleFieldChange}
-              id="address"
-              value={accountInfo.address}
-            />
-          </fieldset>
-          <fieldset>
-            <label htmlFor="phone_number">Phone Number:</label>
-            <input
-              type="text"
-              required
-              onChange={handleFieldChange}
-              id="phone_number"
-              value={accountInfo.phone_number}
-            />
-          </fieldset>
-          <fieldset>
-            <button type="submit">Update </button>
-            <button
-          type="button"
-          onClick={() => {
-            Edit();
-          }}
-        >
-         Back
-        </button>
-          </fieldset>
-        </form>
-        <Link to="/account/addpayment">
-          <button>Add Payment</button>
-        </Link>
+              <fieldset>
+                <label htmlFor="last_name">Last Name:</label>
+                <input
+                  type="text"
+                  required
+                  onChange={handleFieldChange}
+                  id="last_name"
+                  value={accountInfo.last_name}
+                />
+              </fieldset>
+              <fieldset>
+                <label htmlFor="address">Address:</label>
+                <input
+                  type="text"
+                  required
+                  onChange={handleFieldChange}
+                  id="address"
+                  value={accountInfo.address}
+                />
+              </fieldset>
+              <fieldset>
+                <label htmlFor="phone_number">Phone Number:</label>
+                <input
+                  type="text"
+                  required
+                  onChange={handleFieldChange}
+                  id="phone_number"
+                  value={accountInfo.phone_number}
+                />
+              </fieldset>
+              <fieldset>
+                <button type="submit">Update </button>
+                <button
+              type="button"
+              onClick={() => {
+                Edit();
+              }}
+            >
+            Back
+            </button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
       </div>
     );
   };
