@@ -1,0 +1,36 @@
+.categories {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.categoryHeader {
+    font-size: large;
+}
+
+.categoryCard {
+    border: 2px solid gray;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    min-width: 200px;
+    width: 200px;
+}
+
+.info-stack {
+    display: flex;
+}
+
+.total {
+    margin-left: 5px;
+}
+
+.category-products {
+    margin-top: 3px;
+    margin-left: 10px;
+}
+
+.categoryCard:hover {
+    cursor: pointer;
+    border: 2px solid rgb(240, 165, 5);
+}

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ApiManager from "../../modules/ApiManager";
-import ProductTypeListOptions from "./ProductTypeListOptions";
+import ProductTypeListOptions from "./ProductTypeListOptions"
+import "../../styles/SellForm.css"
 
 const SellProductForm = (props) => {
-  const [productTypes, setProductTypes] = useState([]);
+  const [productTypes, setProductTypes] = useState([])
+  const [localDelivery, setLocalDelivery] = useState(false)
   const [newProduct, setNewProduct] = useState({
     title: "",
     price: "",
@@ -13,6 +15,11 @@ const SellProductForm = (props) => {
     location: "",
     image: "#",
   });
+
+  const updateDelivery = () => {
+    const delivery = localDelivery
+    setLocalDelivery(!delivery)
+  }
 
   const handleFieldChange = (evt) => {
     const stateToChange = { ...newProduct };
@@ -67,91 +74,93 @@ const SellProductForm = (props) => {
 
   return (
     <>
-      <form>
-        <h1>Sell a Product</h1>
-        <fieldset>
-          <label htmlFor="productTitle">Title</label>
-          <input
-            type="text"
-            id="title"
-            placeholder="Product Title"
-            onChange={handleFieldChange}
-          ></input>
-        </fieldset>
-        <fieldset>
-          <label>Price</label>
-          <input
-            type="text"
-            id="price"
-            className="form-control"
-            placeholder="Product Price"
-            onChange={handleFieldChange}
-            required
-          />
-        </fieldset>
-        <fieldset>
-          <label>Description</label>
-          <input
-            type="text"
-            id="description"
-            className="form-control"
-            placeholder="Product Description"
-            onChange={handleFieldChange}
-            required
-          />
-        </fieldset>
-        <fieldset>
-          <label>Quantity</label>
-          <input
-            type="text"
-            id="quantity"
-            className="form-control"
-            placeholder="Product Quantity"
-            onChange={handleFieldChange}
-            required
-          />
-        </fieldset>
-        <fieldset>
-          <label>Location</label>
-          <input
-            type="text"
-            id="location"
-            className="form-control"
-            placeholder="Product Location"
-            onChange={handleFieldChange}
-            required
-          />
-        </fieldset>
-        <fieldset>
-          <label>Product Type</label>
-          <select
-            className="custom-select"
-            id="inputGroupSelect01"
-            required
-            onChange={handleFocusSelect}
-          >
-            <option value="0">Please select</option>
-            {productTypes.length > 0 &&
-              productTypes.map((listObject) => {
-                return (
-                  <ProductTypeListOptions
+      <form className="formContainer">
+        <div className="form-header">
+          <h1>Sell a Product</h1>
+        </div>
+        <div className="sellForm">
+          <fieldset>
+            <label htmlFor="productTitle">Title</label>
+            <input
+              type="text"
+              id="title"
+              placeholder="Product Title"
+              onChange={handleFieldChange}
+            ></input>
+          </fieldset>
+          <fieldset>
+            <label>Price</label>
+            <input
+              type="text"
+              id="price"
+              className="form-control"
+              placeholder="Product Price"
+              onChange={handleFieldChange}
+              required
+            />
+          </fieldset>
+          <fieldset>
+            <label>Description</label>
+            <input
+              type="text"
+              id="description"
+              className="form-control"
+              placeholder="Product Description"
+              onChange={handleFieldChange}
+              required
+            />
+          </fieldset>
+          <fieldset>
+            <label>Quantity</label>
+            <input
+              type="text"
+              id="quantity"
+              className="form-control"
+              placeholder="Product Quantity"
+              onChange={handleFieldChange}
+              required
+            />
+          </fieldset>
+          <fieldset>
+            <label>Local Delivery?</label>
+            <input type="checkbox" onClick={updateDelivery} />
+            {localDelivery ? 
+            <div>
+              <label>Location</label>
+              <input
+                type="text"
+                id="location"
+                className="form-control"
+                placeholder="Product Location"
+                onChange={handleFieldChange}
+                required
+              />
+            </div>
+          : null}
+          </fieldset>
+          <fieldset>
+            <label>Product Type</label>
+            <select className="custom-select" id="inputGroupSelect01" onChange={handleFocusSelect}>
+                <option value="0" >Please select</option>
+                {productTypes.length > 0 && productTypes.map((listObject) => {
+                    return <ProductTypeListOptions
                     key={listObject.id}
                     value={listObject.id}
                     listObject={listObject}
                     {...props}
-                  />
-                );
-              })}
-          </select>
-        </fieldset>
-        <fieldset>
-          <button type="button" onClick={handleSubmit}>
-            Sell
-          </button>
-          <button type="button" onClick={handleCancel}>
-            Cancel
-          </button>
-        </fieldset>
+                    />
+                })}
+            </select>
+          </fieldset>
+          <fieldset>
+            <button type="button" onClick={handleSubmit}>
+              Sell
+            </button>
+            <button type="button" onClick={handleCancel}>
+              Cancel
+            </button>
+          </fieldset>
+        </div>
       </form>
     </>
   );
