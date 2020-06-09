@@ -33,7 +33,7 @@ const Order = (props) => {
     ApiManager.getAll('orderproducts').then(resp => {
       setOrderProducts(resp)
       if (resp.length != 0 && orderId.orderId != 0) {
-        setOrderId(resp[0].orderId)
+        setOrderId(resp.orderId)
       }
     })
   }, [])
