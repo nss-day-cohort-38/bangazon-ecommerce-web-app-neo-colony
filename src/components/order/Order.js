@@ -44,7 +44,6 @@ const Order = (props) => {
      <div>
        <section>
          {orderProducts.map(orderProduct =>{ 
-           
            return <ProductCard product={orderProduct.product} key={orderProduct.id}/>
          })}
        </section>
