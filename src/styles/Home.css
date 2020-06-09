@@ -2,11 +2,12 @@
     display: flex;
     justify-content: space-evenly;
     flex-flow: row wrap;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.productCard {
-    border: 2px solid gray;
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 10px;
+.homeLogo {
+    display: flex;
+    justify-content: center;
+    font-size: large;
 }

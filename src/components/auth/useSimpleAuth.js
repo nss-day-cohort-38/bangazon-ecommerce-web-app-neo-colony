@@ -5,7 +5,6 @@ import AuthManager from "../../modules/AuthManager";
 const useSimpleAuth = () => {
 
     const [loggedIn, setIsLoggedIn] = useState(false)
-
     const isAuthenticated = () =>
         loggedIn || sessionStorage.getItem("ecommerceapi-token") !== null
 
