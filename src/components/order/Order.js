@@ -27,7 +27,6 @@ const Order = (props) => {
   useEffect(() => {
     ApiManager.getAll('paymenttypes').then(resp => {
       setPaymentMethods(resp)
-      console.log(resp)
 
     })
     ApiManager.getAll('orderproducts').then(resp => {
