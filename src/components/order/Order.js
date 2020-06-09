@@ -34,7 +34,6 @@ const Order = (props) => {
     })
 
     ApiManager.getAll('orderproducts').then(resp => {
-      console.log(resp[0].order_id)
       setOrderProducts(resp)  
 
       if (resp.length > 0) {
