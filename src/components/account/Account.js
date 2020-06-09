@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import ApiManager from '../../modules/ApiManager';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "../../styles/Account.css"
+import ApiManager from "../../modules/ApiManager"
 
 const Account = (props) => {
     const [accountInfo, setAccountInfo] = useState("");
@@ -7,7 +9,6 @@ const Account = (props) => {
   
     const accountSettings = () => {
       ApiManager.getAll("customers").then(allUserData => {
-          console.log(allUserData)
         const accountInfoObject = {
           id: allUserData[0].id,
           first_name: allUserData[0].user.first_name,
@@ -149,6 +150,9 @@ const Account = (props) => {
         </button>
           </fieldset>
         </form>
+        <Link to="/account/addpayment">
+          <button>Add Payment</button>
+        </Link>
       </div>
     );
   };
