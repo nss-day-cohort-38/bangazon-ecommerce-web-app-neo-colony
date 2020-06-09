@@ -1,6 +1,7 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 import ApiManager from '../../modules/ApiManager'
+import "../../styles/Product.css"
 
 const ProductCard = props => {
 
@@ -17,7 +18,7 @@ const ProductCard = props => {
     return (
         <>
             <section className="productCard" >
-                <div onClick={seeDetails}>
+                <div className="productInfo" onClick={seeDetails}>
                     <div>{props.product.title}</div>
                     <div>Price: ${props.product.price}</div>
                     <div>Quantity: {props.product.quantity}</div>
