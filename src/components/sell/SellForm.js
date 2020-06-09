@@ -13,7 +13,7 @@ const SellProductForm = (props) => {
     quantity: "",
     product_type_id: 0,
     location: "",
-    image: "#"
+    image: "#",
   });
 
   const updateDelivery = () => {
@@ -28,14 +28,13 @@ const SellProductForm = (props) => {
   };
 
   const handleFocusSelect = (event) => {
-    const stateToChange = { ...newProduct }
-    stateToChange.product_type_id = parseInt(event.target.value)
-    setNewProduct(stateToChange)
-}
+    const stateToChange = { ...newProduct };
+    stateToChange.product_type_id = parseInt(event.target.value);
+    setNewProduct(stateToChange);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const productObj = {
       title: newProduct.title,
       price: newProduct.price,
@@ -43,12 +42,24 @@ const SellProductForm = (props) => {
       quantity: newProduct.quantity,
       location: newProduct.location,
       image: newProduct.image,
-      product_type_id: newProduct.product_type_id
+      product_type_id: newProduct.product_type_id,
     };
 
-    ApiManager.create("products", productObj).then(() =>
-      props.history.push("/")
-    );
+    if (
+      newProduct.title === "" ||
+      newProduct.price === "" ||
+      newProduct.description === "" ||
+      newProduct.quantity === "" ||
+      newProduct.image === ""
+    ) {
+      window.alert("Please make sure all fields are filled.");
+    } else if (newProduct.product_type_id === 0) {
+      window.alert("Please select a product type");
+    } else {
+      ApiManager.create("products", productObj).then(() =>
+        props.history.push("/")
+      );
+    }
   };
 
   const handleCancel = () => {
@@ -56,8 +67,10 @@ const SellProductForm = (props) => {
   };
 
   useEffect(() => {
-    ApiManager.getAll("producttypes").then(response => setProductTypes(response))
-}, [])
+    ApiManager.getAll("producttypes").then((response) =>
+      setProductTypes(response)
+    );
+  }, []);
 
   return (
     <>
