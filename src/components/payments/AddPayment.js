@@ -17,6 +17,10 @@ const AddPayment = (props) => {
     setPaymenttype(stateToChange);
   };
 
+  const getPaymentMethods = () => {
+    ApiManager.getAll("paymenttypes").then(resp => setPaymentMethods(resp))
+  }
+
   const addPaymenttype = (e) => {
         e.preventDefault();
         setIsLoading(true);
@@ -27,14 +31,17 @@ const AddPayment = (props) => {
         account_number: paymenttype.account_number,
         expiration_date: exp_date,
         };
-
-        ApiManager.create("paymenttypes", paymentTypeCopy)
-            .then(ApiManager.getAll("paymenttypes").then(resp => setPaymentMethods(resp)))
-            .then(setIsLoading(false))
+        
+        ApiManager.create("paymenttypes", paymentTypeCopy).then(() => {
+          ApiManager.getAll("paymenttypes").then(resp => setPaymentMethods(resp))
+          .then(setIsLoading(false))
+        })
   };
 
   useEffect(() => {
-    ApiManager.getAll("paymenttypes").then(resp => setPaymentMethods(resp))
+    ApiManager.getAll("paymenttypes").then(resp => {
+      setPaymentMethods(resp)
+    })
   }, [])
 
   return (
@@ -89,6 +96,7 @@ const AddPayment = (props) => {
                     <PaymentTypeCard
                       key={paymentMethod.id}
                       paymentMethod={paymentMethod}
+                      getPaymentMethods={getPaymentMethods}
                       {...props}
                     />
                   );
