@@ -69,7 +69,7 @@ const Account = (props) => {
           </button>
         </div>
         <div className="content">
-          <button
+          {/* <button
             type="button"
             onClick={() => {
               props.history.push({
@@ -79,17 +79,17 @@ const Account = (props) => {
             }}
           >
             Edit Payment Options
-          </button>
+          </button> */}
         </div>
         <div className="content">
-          <button
+          {/* <button
             type="button"
             onClick={() => {
               props.history.push("/order");
             }}
           >
             View Order History
-          </button>
+          </button> */}
         </div>
       </>
     ) : (
