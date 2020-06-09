@@ -6,6 +6,7 @@ import ProductDetails from './product/ProductDetails'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import Sell from './sell/Sell'
+import Order from './order/Order'
 import Account from './account/Account';
 import SellProductForm from './sell/SellForm';
 import AddPayment from './payments/AddPayment'
@@ -55,6 +56,13 @@ const AppViews = props => {
                 path="/sell"
                 render={props => {
                     return <SellProductForm {...props}/>
+                }}
+            />
+
+            <Route
+                path="/cart"
+                render={props => {
+                    return <Order {...props}/>
                 }}
             />
             <Route
