@@ -10,6 +10,7 @@ const Order = (props) => {
   const [orderProducts, setOrderProducts] = useState([])
   const [paymentId, setPaymentId] = useState({ paymentTypeId: 0 })
   const [orderId, setOrderId] = useState({ orderId: 0 })
+  const [reRender, setReRender] = useState(false)
 
   const handleSubmit = () => {
     if (paymentId.paymentTypeId != 0) {
@@ -24,6 +25,11 @@ const Order = (props) => {
     setPaymentId(stateToChange);
   }
 
+  const deleteOrderProduct = evt => {
+    ApiManager.delete("orderproducts", evt.target.value)
+        .then(setReRender(!reRender))
+}
+
   useEffect(() => {
     ApiManager.getAll('paymenttypes').then(resp => {
       setPaymentMethods(resp)
@@ -35,7 +41,8 @@ const Order = (props) => {
         setOrderId(resp.orderId)
       }
     })
-  }, [])
+    
+  }, [reRender])
 
 
 
@@ -46,7 +53,12 @@ const Order = (props) => {
           <div>
             <section>
               {orderProducts.map(orderProduct => {
-                return <ProductCard product={orderProduct.product} key={orderProduct.id} />
+                return (<>
+                <ProductCard product={orderProduct.product} key={orderProduct.id} />
+                 <button value={orderProduct.id} onClick={(evt) => {
+                  deleteOrderProduct(evt)
+                  }}>Delete Product</button></>
+                )
               })}
             </section>
             <select id="paymentTypeId" onChange={handleSelectChange}>
@@ -58,9 +70,9 @@ const Order = (props) => {
           </div>
           <button id="orderId" onClick={handleSubmit}>
             Complete Order</button>
-        </div>
-        : 
-        <div>Add a Product to Start an Order</div>} </>
+          </div>
+          : 
+          <div>Add a Product to Start an Order</div>} </>
 
   );
 };
