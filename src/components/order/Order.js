@@ -9,14 +9,18 @@ const Order = (props) => {
   const [paymentMethods, setPaymentMethods] = useState([])
   const [orderProducts, setOrderProducts] = useState([])
   const [paymentId, setPaymentId] = useState({ paymentTypeId: 0 })
-  const [orderId, setOrderId] = useState({ orderId: 0 })
+  const [orderId, setOrderId] = useState(0)
   const [reRender, setReRender] = useState(false)
 
   const handleSubmit = () => {
     if (paymentId.paymentTypeId != 0) {
-      ApiManager.update('orders', orderId['orderId'], { 'payment_type_id': parseInt(paymentId.paymentTypeId) })
+      ApiManager.update('orders', orderId, { 'payment_type_id': parseInt(paymentId.paymentTypeId) })
       .then(props.history.push('/'))
     }
+  }
+
+  const handleDelete = () => {
+    ApiManager.delete('orders', orderId).then(() => props.history.push('/cart'))
   }
 
   const handleSelectChange = (evt) => {
@@ -33,12 +37,13 @@ const Order = (props) => {
   useEffect(() => {
     ApiManager.getAll('paymenttypes').then(resp => {
       setPaymentMethods(resp)
-
     })
+
     ApiManager.getAll('orderproducts').then(resp => {
-      setOrderProducts(resp)
-      if (resp.length != 0 && orderId.orderId != 0) {
-        setOrderId(resp.orderId)
+      setOrderProducts(resp)  
+
+      if (resp.length > 0) {
+        setOrderId(resp[0].order_id)
       }
     })
     
@@ -69,10 +74,12 @@ const Order = (props) => {
             </select>
           </div>
           <button id="orderId" onClick={handleSubmit}>
-            Complete Order</button>
-          </div>
-          : 
-          <div>Add a Product to Start an Order</div>} </>
+            Complete Order
+          </button>
+          <button onClick={handleDelete}>Cancel Order</button>
+        </div>
+        : 
+        <div>Add a Product to Start an Order</div>} </>
 
   );
 };
