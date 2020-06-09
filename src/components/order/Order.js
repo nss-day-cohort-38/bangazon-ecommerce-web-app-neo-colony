@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import OrderDetail from './OrderDetail'
-import addPaymentToOrder from './Order'
 import ApiManager from "../../modules/ApiManager";
 import ProductCard from "../product/ProductCard";
 
@@ -10,6 +8,7 @@ const Order = (props) => {
   const [orderProducts, setOrderProducts] = useState([])
   const [paymentId, setPaymentId] = useState({ paymentTypeId: 0 })
   const [orderId, setOrderId] = useState(0)
+  const [reRender, setReRender] = useState(false)
 
   const handleSubmit = () => {
     if (paymentId.paymentTypeId != 0) {
@@ -19,7 +18,10 @@ const Order = (props) => {
   }
 
   const handleDelete = () => {
-    ApiManager.delete('orders', orderId).then(() => props.history.push('/cart'))
+    ApiManager.delete('orders', orderId).then(() => {
+      setReRender(!reRender)
+      props.history.push('/')
+    })
   }
 
   const handleSelectChange = (evt) => {
@@ -27,6 +29,11 @@ const Order = (props) => {
     stateToChange[evt.target.id] = evt.target.value;
     setPaymentId(stateToChange);
   }
+
+  const deleteOrderProduct = evt => {
+    ApiManager.delete("orderproducts", evt.target.value)
+        .then(setReRender(!reRender))
+}
 
   useEffect(() => {
     ApiManager.getAll('paymenttypes').then(resp => {
@@ -40,7 +47,8 @@ const Order = (props) => {
         setOrderId(resp[0].order_id)
       }
     })
-  }, [])
+    
+  }, [reRender])
 
 
 
@@ -51,7 +59,12 @@ const Order = (props) => {
           <div>
             <section>
               {orderProducts.map(orderProduct => {
-                return <ProductCard product={orderProduct.product} key={orderProduct.id} />
+                return (<>
+                <ProductCard product={orderProduct.product} key={orderProduct.id} />
+                 <button value={orderProduct.id} onClick={(evt) => {
+                  deleteOrderProduct(evt)
+                  }}>Delete Product</button></>
+                )
               })}
             </section>
             <select id="paymentTypeId" onChange={handleSelectChange}>
