@@ -2,16 +2,17 @@ import React from 'react'
 import { Route, Redirect } from "react-router-dom";
 import SearchResults from './search/SearchResults'
 import Home from './home/Home'
-import Profile from './account/Account'
 import ProductDetails from './product/ProductDetails'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import Sell from './sell/Sell'
 import Order from './order/Order'
+import Account from './account/Account';
 import SellProductForm from './sell/SellForm';
 import AddPayment from './payments/AddPayment'
 import Categories from './categories/Categories'
 import ProductListings from './listing/YourListing'
+import PaymentTypeCard from './payments/PaymentTypeCard'
 
 const AppViews = props => {
 
@@ -38,9 +39,9 @@ const AppViews = props => {
                 }}
             />
             <Route
-                exact path="/account"
+                path="/account"
                 render={props => {
-                    return <Profile />
+                    return <Account />
                 }}
             />
             <Route
@@ -68,6 +69,12 @@ const AppViews = props => {
                 path="/myproducts"
                 render={props => {
                     return <ProductListings {...props}/>
+                }}
+            />
+            <Route
+                path="/paymenttypes"
+                render={props => {
+                    return <PaymentTypeCard {...props}/>
                 }}
             />
             <Route
