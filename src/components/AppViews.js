@@ -39,7 +39,7 @@ const AppViews = props => {
                 }}
             />
             <Route
-                path="/account"
+                exact path="/account"
                 render={props => {
                     return <Account />
                 }}

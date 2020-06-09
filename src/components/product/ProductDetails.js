@@ -32,14 +32,20 @@ const ProductDetails = props => {
 
     return (
         <>
-
-            {/* <img src={require(`${fetchedDetails.image_path}`)} /> */}
-            <div>{fetchedDetails.title}</div>
-            <div>{fetchedDetails.price}</div>
-            <div>{fetchedDetails.description}</div>
-            <div>{fetchedDetails.location}</div>
-            <div>quantity: {fetchedDetails.quantity}</div>
-            <button onClick={addToOrder}>Add To Order</button>
+            <div className="productDetails">
+                <div className="detailsHeader">
+                    <h1>Details</h1>
+                </div>
+                <div className="productCard">
+                {/* <img src={require(`${fetchedDetails.image_path}`)} /> */}
+                    <div>{fetchedDetails.title}</div>
+                    <div>{fetchedDetails.price}</div>
+                    <div>{fetchedDetails.description}</div>
+                    <div>{fetchedDetails.location}</div>
+                    <div>quantity: {fetchedDetails.quantity}</div>
+                    <button onClick={addToOrder}>Add To Order</button>
+                </div>
+            </div>
         </>
     )
 }
