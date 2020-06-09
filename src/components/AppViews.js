@@ -62,7 +62,7 @@ const AppViews = props => {
             <Route
                 path="/cart"
                 render={props => {
-                    return <Order/>
+                    return <Order {...props}/>
                 }}
             />
             <Route

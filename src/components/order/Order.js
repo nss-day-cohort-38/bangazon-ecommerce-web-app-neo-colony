@@ -8,16 +8,18 @@ const Order = (props) => {
 
   const [paymentMethods, setPaymentMethods] = useState([])
   const [orderProducts, setOrderProducts] = useState([])
-  const [paymentId, setPaymentId] = useState({paymentTypeId: 0})
-  const [orderId, setOrderId] = useState({orderId: 0})
-  
-  const handleSubmit =() =>{
-    if(paymentId.paymentTypeId != 0) {
-      ApiManager.update('orders', orderId['orderId'], {'payment_type_id': parseInt(paymentId.paymentTypeId)})}
+  const [paymentId, setPaymentId] = useState({ paymentTypeId: 0 })
+  const [orderId, setOrderId] = useState({ orderId: 0 })
+
+  const handleSubmit = () => {
+    if (paymentId.paymentTypeId != 0) {
+      ApiManager.update('orders', orderId['orderId'], { 'payment_type_id': parseInt(paymentId.paymentTypeId) })
+      .then(props.history.push('/'))
+    }
   }
 
-  const handleSelectChange =(evt) =>{
-    const stateToChange = { ...paymentId};
+  const handleSelectChange = (evt) => {
+    const stateToChange = { ...paymentId };
     stateToChange[evt.target.id] = evt.target.value;
     setPaymentId(stateToChange);
   }
@@ -26,7 +28,7 @@ const Order = (props) => {
     ApiManager.getAll('paymenttypes').then(resp => {
       setPaymentMethods(resp)
       console.log(resp)
-      
+
     })
     ApiManager.getAll('orderproducts').then(resp => {
       setOrderProducts(resp)
@@ -34,31 +36,33 @@ const Order = (props) => {
         setOrderId(resp[0].orderId)
       }
     })
-  }, []) 
+  }, [])
 
-  
+
 
   return (
-    
-    <div>
-     <div>
-       <section>
-         {orderProducts.map(orderProduct =>{ 
-           return <ProductCard product={orderProduct.product} key={orderProduct.id}/>
-         })}
-       </section>
-       <select id="paymentTypeId" onChange={handleSelectChange}>
-         <option></option>
-         {paymentMethods.map(paymentMethod => {
-           return <option value={paymentMethod.id}>{paymentMethod.merchant_name}</option>
-         })}
-       </select>
-     </div>
-     <button id="orderId" onClick={handleSubmit}>
-        Complete Order
-     </button>
-    </div> 
-    
+    <>
+      {orderProducts.length > 0 ?
+        <div>
+          <div>
+            <section>
+              {orderProducts.map(orderProduct => {
+                return <ProductCard product={orderProduct.product} key={orderProduct.id} />
+              })}
+            </section>
+            <select id="paymentTypeId" onChange={handleSelectChange}>
+              <option></option>
+              {paymentMethods.map(paymentMethod => {
+                return <option value={paymentMethod.id} key={paymentMethod.id}>{paymentMethod.merchant_name}</option>
+              })}
+            </select>
+          </div>
+          <button id="orderId" onClick={handleSubmit}>
+            Complete Order</button>
+        </div>
+        : 
+        <div>Add a Product to Start an Order</div>} </>
+
   );
 };
 
