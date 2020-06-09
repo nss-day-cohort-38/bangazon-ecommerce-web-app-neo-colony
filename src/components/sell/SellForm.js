@@ -4,6 +4,7 @@ import ProductTypeListOptions from "./ProductTypeListOptions"
 
 const SellProductForm = (props) => {
   const [productTypes, setProductTypes] = useState([])
+  const [localDelivery, setLocalDelivery] = useState(false)
   const [newProduct, setNewProduct] = useState({
     title: "",
     price: "",
@@ -13,6 +14,11 @@ const SellProductForm = (props) => {
     location: "",
     image: "#"
   });
+
+  const updateDelivery = () => {
+    const delivery = localDelivery
+    setLocalDelivery(!delivery)
+  }
 
   const handleFieldChange = (evt) => {
     const stateToChange = { ...newProduct };
@@ -99,30 +105,37 @@ const SellProductForm = (props) => {
           />
         </fieldset>
         <fieldset>
-          <label>Location</label>
-          <input
-            type="text"
-            id="location"
-            className="form-control"
-            placeholder="Product Location"
-            onChange={handleFieldChange}
-            required
-          />
+          <label>Local Delivery?</label>
+          <input type="checkbox" onClick={updateDelivery} />
+          {localDelivery ? 
+          <div>
+            <label>Location</label>
+            <input
+              type="text"
+              id="location"
+              className="form-control"
+              placeholder="Product Location"
+              onChange={handleFieldChange}
+              required
+            />
+          </div>
+        : null}
         </fieldset>
+          
         <fieldset>
-                    <label>Product Type</label>
-                    <select className="custom-select" id="inputGroupSelect01" onChange={handleFocusSelect}>
-                        <option value="0" >Please select</option>
-                        {productTypes.length > 0 && productTypes.map((listObject) => {
-                            return <ProductTypeListOptions
-                            key={listObject.id}
-                            value={listObject.id}
-                            listObject={listObject}
-                            {...props}
-                            />
-                        })}
-                    </select>
-                </fieldset>
+          <label>Product Type</label>
+          <select className="custom-select" id="inputGroupSelect01" onChange={handleFocusSelect}>
+              <option value="0" >Please select</option>
+              {productTypes.length > 0 && productTypes.map((listObject) => {
+                  return <ProductTypeListOptions
+                  key={listObject.id}
+                  value={listObject.id}
+                  listObject={listObject}
+                  {...props}
+                  />
+              })}
+          </select>
+          </fieldset>
         <fieldset>
           <button type="button" onClick={handleSubmit}>
             Sell
