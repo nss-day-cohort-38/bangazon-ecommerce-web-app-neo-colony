@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import OrderDetail from './OrderDetail'
-import addPaymentToOrder from './Order'
 import ApiManager from "../../modules/ApiManager";
 import ProductCard from "../product/ProductCard";
 
@@ -20,7 +18,10 @@ const Order = (props) => {
   }
 
   const handleDelete = () => {
-    ApiManager.delete('orders', orderId).then(() => props.history.push('/cart'))
+    ApiManager.delete('orders', orderId).then(() => {
+      setReRender(!reRender)
+      props.history.push('/')
+    })
   }
 
   const handleSelectChange = (evt) => {
