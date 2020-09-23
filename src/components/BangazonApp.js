@@ -4,14 +4,25 @@ import ApplicationViews from './AppViews'
 
 const BangazonApp = props => {
 
-  const isAuthenticated = () => sessionStorage.getItem("ecommerceapi-token") !== null;
+  const isAuthenticated = () => sessionStorage.getItem("Token") !== null;
 
-  const [hasUser] = useState(isAuthenticated());
+  const [hasUser, setHasUser] = useState(isAuthenticated());
+
+  const setUser = (userId, token) => {
+    sessionStorage.setItem("Active User Id", JSON.stringify(userId));
+    sessionStorage.setItem("Token", JSON.stringify(token));
+    setHasUser(isAuthenticated());
+  }
+
+  const clearUser = () => {
+    sessionStorage.clear();
+    setHasUser(isAuthenticated());
+  }
 
     return (
         <>
-            <NavBar hasUser={hasUser} />
-            <ApplicationViews hasUser={hasUser} />
+            <NavBar clearUser={clearUser} hasUser={hasUser} />
+            <ApplicationViews setUser={setUser} hasUser={hasUser} />
         </>
     )
 

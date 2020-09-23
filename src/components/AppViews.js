@@ -17,17 +17,18 @@ import PaymentTypeCard from './payments/PaymentTypeCard'
 const ApplicationViews = props => {
 
     const hasUser = props.hasUser;
+    const setUser = props.setUser;
 
     return (
         <React.Fragment>
             <Route
                 path="/login"
                 render={props => {
-                    return <Login results={props.results} {...props} />
+                    return <Login setUser={setUser} results={props.results} {...props} />
                 }}
             />
             <Route path="/register" render={props => {
-                return <Register {...props} />
+                return <Register setUser={setUser} {...props} />
             }}
             />
             <Route path="/search" render={props => {
