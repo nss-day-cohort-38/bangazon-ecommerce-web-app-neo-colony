@@ -21,13 +21,14 @@ const ProductListings = props => {
             <div className="listings-header">
                 <h1>Your Listings</h1>
             </div>
-            {myProducts.map(product => (
+            {myProducts.length >= 1 ?
+            myProducts.map(product => (
             <ProductCard 
                 key={product.id}
                 product={product}
                 getSellersProducts={getSellersProducts}
             />
-            ))}
+            )) : null}
         </div>
     )
 }

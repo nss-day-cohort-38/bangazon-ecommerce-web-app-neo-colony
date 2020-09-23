@@ -21,7 +21,10 @@ const Categories = props => {
             <div className="categoryHeader">
                 <h1>Categories</h1>
             </div>
-            {fetched.map(res => <CategoryCard category={res} key={res.id} />)}
+            {fetched.length >= 1 ?
+            fetched.map(res => 
+            <CategoryCard category={res} key={res.id} />
+            ) : null}
         </div>
     )
 

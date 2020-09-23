@@ -6,20 +6,14 @@ export default {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Token ${sessionStorage.getItem("ecommerceapi-token")}`
+                "Authorization": `Token ${sessionStorage.getItem("Token")}`
             },
         })
             .then(response => response.json())
     },
 
     getAll(route) {
-        return fetch(`${apiUrl}/${route}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Token ${sessionStorage.getItem("ecommerceapi-token")}`
-            },
-        })
+        return fetch(`${apiUrl}/${route}`)
             .then(response => response.json())
     },
     getAllNoToken(route) {
@@ -38,7 +32,7 @@ export default {
             "headers": {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": `Token ${sessionStorage.getItem("ecommerceapi-token")}`
+                "Authorization": `Token ${sessionStorage.getItem("Token")}`
             },
             body: JSON.stringify(createItem)
         })
@@ -50,7 +44,7 @@ export default {
             "headers": {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": `Token ${sessionStorage.getItem("ecommerceapi-token")}`
+                "Authorization": `Token ${sessionStorage.getItem("Token")}`
             },
             body: JSON.stringify(updateItem)
         })
@@ -62,7 +56,7 @@ export default {
             "headers": {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": `Token ${sessionStorage.getItem("ecommerceapi-token")}`
+                "Authorization": `Token ${sessionStorage.getItem("Token")}`
             },
             body: JSON.stringify(updateItem)
         })
@@ -72,7 +66,7 @@ export default {
         return fetch(`${apiUrl}/${route}/${id}`, {
             "method": "DELETE",
             "headers": {
-                "Authorization": `Token ${sessionStorage.getItem("ecommerceapi-token")}`
+                "Authorization": `Token ${sessionStorage.getItem("Token")}`
             }
         })
     },
@@ -81,7 +75,7 @@ export default {
         return fetch(`${apiUrl}/products?${query}=${searchTerm}`, {
             "method": "GET",
             "headers": {
-                "Authorization": `Token ${sessionStorage.getItem("ecommerceapi-token")}`
+                "Authorization": `Token ${sessionStorage.getItem("Token")}`
             }
         }).then(resp => resp.json())
     }

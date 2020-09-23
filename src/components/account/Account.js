@@ -9,6 +9,7 @@ const Account = (props) => {
   
     const accountSettings = () => {
       ApiManager.getAll("customers").then(allUserData => {
+        console.log(allUserData)
         const accountInfoObject = {
           id: allUserData[0].id,
           first_name: allUserData[0].user.first_name,
