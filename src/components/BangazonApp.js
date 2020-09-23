@@ -1,15 +1,17 @@
 import React, {useState} from 'react'
 import NavBar from './nav/NavBar'
-import AppViews from './AppViews'
+import ApplicationViews from './AppViews'
 
 const BangazonApp = props => {
 
-    
+  const isAuthenticated = () => sessionStorage.getItem("ecommerceapi-token") !== null;
+
+  const [hasUser] = useState(isAuthenticated());
 
     return (
         <>
-        <NavBar />
-        <AppViews />
+            <NavBar hasUser={hasUser} />
+            <ApplicationViews hasUser={hasUser} />
         </>
     )
 

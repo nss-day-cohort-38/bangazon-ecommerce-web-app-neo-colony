@@ -10,6 +10,8 @@ const NavBar = props => {
 
     const { logout } = useSimpleAuth()
 
+    const hasUser = props.hasUser;
+
     const handleFieldChange = evt => {
         const stateToChange = { ...keyword };
         stateToChange[evt.target.id] = evt.target.value;
@@ -43,7 +45,8 @@ const NavBar = props => {
                         <Link className="nav-item" to="/categories">categories</Link>
                         <Link className="nav-item" to="/account">account</Link>
                         <Link className="nav-item" to="/cart">cart</Link>
-                        <Link onClick={handleLogout} className="nav-item" to="/login">logout</Link>
+                        {hasUser ? <Link onClick={handleLogout} className="nav-item" to="/login">logout</Link> 
+                        : null}
                     </div>
 
                     <input

@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Link } from "react-router-dom"
 import useSimpleAuth from "./useSimpleAuth";
 
 const Login = props => {
@@ -43,7 +44,10 @@ const Login = props => {
       <fieldset>
         <button type="submit">
           Login
-                    </button>
+        </button>
+        <button onClick={() => props.history.push("/register")}>
+          Register
+        </button>
       </fieldset>
     </form>
   )
