@@ -91,7 +91,7 @@ Matthew Reeds - [LinkedIn](https://www.linkedin.com/in/mreeds/)
 
 Matthew Blagg - [LinkedIn](https://www.linkedin.com/in/matthew-blagg/)
 
-Michael Prince - [LinkedIn](Matthew Blagg - [LinkedIn](https://www.linkedin.com/in/michaelprince3/)
+Michael Prince - [LinkedIn](https://www.linkedin.com/in/michaelprince3/)
 
 Project Link: [https://github.com/nss-day-cohort-38/bangazon-ecommerce-web-app-neo-colony](https://github.com/nss-day-cohort-38/bangazon-ecommerce-web-app-neo-colony)
 
