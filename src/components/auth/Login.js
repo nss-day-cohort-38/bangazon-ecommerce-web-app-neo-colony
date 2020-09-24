@@ -1,9 +1,8 @@
 import React, { useState } from "react"
-import useSimpleAuth from "./useSimpleAuth";
+import LoginManager from "../../modules/AuthManager"
 
 const Login = props => {
   const [credentials, setCredentials] = useState({ username: "", password: "" });
-  const { login } = useSimpleAuth()
 
   const handleFieldChange = (evt) => {
     const stateToChange = { ...credentials };
@@ -11,17 +10,22 @@ const Login = props => {
     setCredentials(stateToChange);
   };
 
-  const handleLogin = e => {
-    e.preventDefault();
-
-    const customerCreds = {
-      "username": credentials.username,
-      "password": credentials.password
+  const handleLogin = evt => {
+    evt.preventDefault();
+    
+    if (credentials.username === "") {
+      window.alert("Please enter a valid username");
+    } else {
+      LoginManager.loginUser(credentials).then(resp => {
+        if (resp.valid) {
+          props.setUser(resp.userId, resp.token);
+          props.history.push("/");
+        } else {
+            window.alert("Invalid username or password")
+        }
+      });
     }
-
-    login(customerCreds)
-      .then(() => props.history.push("/"))
-  }
+  };
 
   return (
     <form className="form--login" onSubmit={handleLogin}>
@@ -43,7 +47,10 @@ const Login = props => {
       <fieldset>
         <button type="submit">
           Login
-                    </button>
+        </button>
+        <button onClick={() => props.history.push("/register")}>
+          Register
+        </button>
       </fieldset>
     </form>
   )

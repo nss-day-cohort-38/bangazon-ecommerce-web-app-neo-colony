@@ -1,9 +1,8 @@
 import React, { useState } from "react"
-import useSimpleAuth from "./useSimpleAuth";
+import AuthManager from "../../modules/AuthManager"
 
 const Register = props => {
   const [credentials, setCredentials] = useState({ firstName: "", lastName: "", email: "", username: "", password: "", address:"", phone_number:""  });
-  const { register } = useSimpleAuth()
 
   const handleFieldChange = (evt) => {
     const stateToChange = { ...credentials };
@@ -24,8 +23,12 @@ const Register = props => {
       "phone_number": credentials.phone_number
     }
 
-    register(newCustomer)
-    .then(() => props.history.push("/"))
+    AuthManager.registerUser(newCustomer).then((resp) => {
+      console.log(resp)
+      props.setUser(resp.userId, resp.token);
+
+      props.history.push("/");
+    });
   }
 
   return (

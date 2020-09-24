@@ -2,33 +2,16 @@ const apiUrl = "http://localhost:8000";
 
 export default {
     getOne(route, id) {
-        return fetch(`${apiUrl}/${route}/${id}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Token ${sessionStorage.getItem("ecommerceapi-token")}`
-            },
-        })
+        return fetch(`${apiUrl}/${route}/${id}`)
             .then(response => response.json())
     },
 
     getAll(route) {
-        return fetch(`${apiUrl}/${route}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Token ${sessionStorage.getItem("ecommerceapi-token")}`
-            },
-        })
+        return fetch(`${apiUrl}/${route}`)
             .then(response => response.json())
     },
     getAllNoToken(route) {
-        return fetch(`${apiUrl}/${route}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-        })
+        return fetch(`${apiUrl}/${route}`)
             .then(response => response.json())
     },
 
@@ -38,7 +21,7 @@ export default {
             "headers": {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": `Token ${sessionStorage.getItem("ecommerceapi-token")}`
+                "Authorization": `Token ${sessionStorage.getItem("Token")}`
             },
             body: JSON.stringify(createItem)
         })
@@ -50,7 +33,7 @@ export default {
             "headers": {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": `Token ${sessionStorage.getItem("ecommerceapi-token")}`
+                "Authorization": `Token ${sessionStorage.getItem("Token")}`
             },
             body: JSON.stringify(updateItem)
         })
@@ -62,7 +45,7 @@ export default {
             "headers": {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": `Token ${sessionStorage.getItem("ecommerceapi-token")}`
+                "Authorization": `Token ${sessionStorage.getItem("Token")}`
             },
             body: JSON.stringify(updateItem)
         })
@@ -72,17 +55,13 @@ export default {
         return fetch(`${apiUrl}/${route}/${id}`, {
             "method": "DELETE",
             "headers": {
-                "Authorization": `Token ${sessionStorage.getItem("ecommerceapi-token")}`
+                "Authorization": `Token ${sessionStorage.getItem("Token")}`
             }
         })
     },
 
     queryProducts(query, searchTerm) {
-        return fetch(`${apiUrl}/products?${query}=${searchTerm}`, {
-            "method": "GET",
-            "headers": {
-                "Authorization": `Token ${sessionStorage.getItem("ecommerceapi-token")}`
-            }
-        }).then(resp => resp.json())
+        return fetch(`${apiUrl}/products?${query}=${searchTerm}`)
+            .then(resp => resp.json())
     }
 };

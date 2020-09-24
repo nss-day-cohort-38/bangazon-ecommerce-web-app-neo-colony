@@ -14,93 +14,99 @@ import Categories from './categories/Categories'
 import ProductListings from './listing/YourListing'
 import PaymentTypeCard from './payments/PaymentTypeCard'
 
-const AppViews = props => {
+const ApplicationViews = props => {
+
+    const hasUser = props.hasUser;
+    const setUser = props.setUser;
 
     return (
         <React.Fragment>
             <Route
-                path="/search"
+                path="/login"
                 render={props => {
+                    return <Login setUser={setUser} results={props.results} {...props} />
+                }}
+            />
+            <Route path="/register" render={props => {
+                return <Register setUser={setUser} {...props} />
+            }}
+            />
+            <Route path="/search" render={props => {
+                if (hasUser) {
                     return <SearchResults {...props} />
-                }}
-            />
-            <Route
-                path="/categories"
-                render={props => {
+                } else {
+                    return <Redirect to="/login" />
+                }
+            }}/>
+            <Route path="/categories" render={props => {
+                if (hasUser) {
                     return <Categories {...props} />
-                }}
-            />
-
-            <Route
-                exact
-                path="/"
-                render={props => {
+                } else {
+                    return <Redirect to="/login" />
+                }
+            }}/>
+            <Route exact path="/" render={props => {
+                if (hasUser) {
                     return <Home />
-                }}
-            />
-            <Route
-                exact path="/account"
-                render={props => {
+                } else {
+                    return <Redirect to="/login" />
+                }
+            }}/>
+            <Route exact path="/account" render={props => {
+                if (hasUser) {
                     return <Account />
-                }}
-            />
-            <Route
-                path="/account/addpayment"
-                render={props => {
-                    return <AddPayment
-                        {...props}
-                    />
-                }}
-            />
-            <Route
-                path="/sell"
-                render={props => {
+                } else {
+                    return <Redirect to="/login" />
+                }
+            }}/>
+            <Route path="/account/addpayment" render={props => {
+                if (hasUser) {
+                    return <AddPayment {...props} />
+                } else {
+                    return <Redirect to="/login" />
+                }
+            }}/>
+            <Route path="/sell" render={props => {
+                if (hasUser) {
                     return <SellProductForm {...props}/>
-                }}
-            />
+                } else {
+                    return <Redirect to="/login" />
+                }
+            }}/>
 
-            <Route
-                path="/cart"
-                render={props => {
+            <Route path="/cart" render={props => {
+                if (hasUser) {
                     return <Order {...props}/>
-                }}
-            />
-            <Route
-                path="/myproducts"
-                render={props => {
+                } else {
+                    return <Redirect to="/login" />   
+                }
+            }}/>
+            <Route path="/myproducts" render={props => {
+                if (hasUser) {
                     return <ProductListings {...props}/>
-                }}
-            />
-            <Route
-                path="/paymenttypes"
-                render={props => {
+                } else {
+                    return <Redirect to="/login" />
+                }
+            }}/>
+            <Route path="/paymenttypes" render={props => {
+                if (hasUser) {
                     return <PaymentTypeCard {...props}/>
-                }}
-            />
-            <Route
-                exact
-                path="/products/:productId(\d+)"
-                render={props => {
+                } else {
+                    return <Redirect to="/login" />
+                }
+            }}/>
+            <Route exact path="/products/:productId(\d+)" render={props => {
+                if (hasUser) {
                     return <ProductDetails
                         productId={parseInt(props.match.params.productId)}
                         {...props}
                     />
-                }} />
-
-            <Route
-                path="/login"
-                render={props => {
-                    return <Login results={props.results} {...props} />
-                }}
-            />
-
-            <Route path="/register" render={props => {
-                return <Register {...props} />
-            }}
-            />
-
+                } else {
+                    return <Redirect to="/login" />
+                }
+            }}/>
         </React.Fragment>
     )
 }
 
-export default AppViews
+export default ApplicationViews
