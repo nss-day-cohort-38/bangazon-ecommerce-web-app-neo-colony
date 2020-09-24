@@ -11,7 +11,6 @@ const Account = (props) => {
   
     const accountSettings = () => {
       ApiManager.getOne("customers", activeUserId).then(userData => {
-        console.log(userData)
         const accountInfoObject = {
           id: userData.id,
           first_name: userData.user.first_name,
