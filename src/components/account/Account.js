@@ -6,17 +6,19 @@ import ApiManager from "../../modules/ApiManager"
 const Account = (props) => {
     const [accountInfo, setAccountInfo] = useState("");
     const [isEditing, setIsEditing] = useState(false);
+    
+    const activeUserId = sessionStorage.getItem("Id")
   
     const accountSettings = () => {
-      ApiManager.getAll("customers").then(allUserData => {
-        console.log(allUserData)
+      ApiManager.getOne("customers", activeUserId).then(userData => {
+        console.log(userData)
         const accountInfoObject = {
-          id: allUserData[0].id,
-          first_name: allUserData[0].user.first_name,
-          last_name: allUserData[0].user.last_name,
-          address: allUserData[0].address,
-          phone_number: allUserData[0].phone_number,
-          email: allUserData[0].user.email
+          id: userData.id,
+          first_name: userData.user.first_name,
+          last_name: userData.user.last_name,
+          address: userData.address,
+          phone_number: userData.phone_number,
+          email: userData.user.email
         };
         setAccountInfo(accountInfoObject);
       });

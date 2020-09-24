@@ -9,7 +9,7 @@ const BangazonApp = props => {
   const [hasUser, setHasUser] = useState(isAuthenticated());
 
   const setUser = (userId, token) => {
-    sessionStorage.setItem("Active User Id", JSON.stringify(userId));
+    sessionStorage.setItem("Id", JSON.stringify(userId));
     sessionStorage.setItem("Token", JSON.stringify(token));
     setHasUser(isAuthenticated());
   }
