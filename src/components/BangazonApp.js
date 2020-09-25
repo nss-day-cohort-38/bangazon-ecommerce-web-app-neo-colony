@@ -10,7 +10,7 @@ const BangazonApp = props => {
 
   const setUser = (userId, token) => {
     sessionStorage.setItem("Id", JSON.stringify(userId));
-    sessionStorage.setItem("Token", JSON.stringify(token));
+    sessionStorage.setItem("Token", token);
     setHasUser(isAuthenticated());
   }
 
