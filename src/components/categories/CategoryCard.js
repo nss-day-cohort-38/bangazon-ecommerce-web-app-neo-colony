@@ -16,7 +16,7 @@ const CategoryCard = props => {
                     <div className="total">({total})</div>
                 </div>
                 <div className="category-products">
-                    {first3.map(res => <div>{res.title}</div>)}
+                    {first3.map(res => <div key={res.id}>{res.title}</div>)}
                 </div>
             </div>
         </>
