@@ -43,7 +43,7 @@ const OrderDetail = props => {
           <div>
             <button
               type="button"
-              onClick={() => props.history.push(`/order/${props.orderId}/edit`)}
+              onClick={() => props.history.push(`/`)}
             >
               Complete Order
             </button>

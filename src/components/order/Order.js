@@ -7,11 +7,13 @@ const Order = (props) => {
 
   const [paymentMethods, setPaymentMethods] = useState([])
   const [orderProducts, setOrderProducts] = useState([])
+  const [total, setTotal] = useState('')
   const [paymentId, setPaymentId] = useState({ paymentTypeId: 0 })
   const [orderId, setOrderId] = useState(0)
   const [reRender, setReRender] = useState(false)
 
   const handleSubmit = () => {
+    console.log(paymentId)
     if (paymentId.paymentTypeId != 0) {
       ApiManager.update('orders', orderId, { 'payment_type_id': parseInt(paymentId.paymentTypeId) })
       .then(props.history.push('/'))
@@ -38,11 +40,22 @@ const Order = (props) => {
 
   useEffect(() => {
     ApiManager.getAll('paymenttypes').then(resp => {
+      console.log(resp)
       setPaymentMethods(resp)
     })
 
     ApiManager.getAll('orderproducts').then(resp => {
       setOrderProducts(resp)  
+
+      console.log(resp)
+      var product;
+      var orderTotal;
+      for (product of resp) {
+        console.log(product)
+        orderTotal += product.product.price
+      }
+      setTotal(orderTotal)
+
 
       if (resp.length > 0) {
         setOrderId(resp[0].order_id)
@@ -69,6 +82,7 @@ const Order = (props) => {
               })}
             </section>
             <select id="paymentTypeId" className="paymentType" onChange={handleSelectChange}>
+              <option>Select a payment method</option>
               {paymentMethods.map(paymentMethod => {
                 return <option value={paymentMethod.id} key={paymentMethod.id}>{paymentMethod.merchant_name}</option>
               })}
