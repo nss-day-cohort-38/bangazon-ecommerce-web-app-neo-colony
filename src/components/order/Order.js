@@ -13,7 +13,6 @@ const Order = (props) => {
   const [reRender, setReRender] = useState(false)
 
   const handleSubmit = () => {
-    console.log(paymentId)
     if (paymentId.paymentTypeId != 0) {
       ApiManager.update('orders', orderId, { 'payment_type_id': parseInt(paymentId.paymentTypeId) })
       .then(props.history.push('/'))
@@ -49,10 +48,11 @@ const Order = (props) => {
 
       console.log(resp)
       var product;
-      var orderTotal;
+      var orderTotal = 0;
       for (product of resp) {
-        console.log(product)
-        orderTotal += product.product.price
+        const price = parseFloat(product.product.price)
+        orderTotal += price
+        console.log(orderTotal)
       }
       setTotal(orderTotal)
 
@@ -87,6 +87,7 @@ const Order = (props) => {
                 return <option value={paymentMethod.id} key={paymentMethod.id}>{paymentMethod.merchant_name}</option>
               })}
             </select>
+            <div className="orderTotal">Total: ${total}</div>
           </div>
           <div className="buttonContainer">
             <button id="orderId" onClick={handleSubmit}>
