@@ -17,8 +17,8 @@ const ProductCard = props => {
 
     return (
         <>
-            <section className="productCard" >
-                <div className="productInfo" onClick={seeDetails}>
+            <section className="productCard" onClick={seeDetails} >
+                <div className="productInfo" >
                     <div>{props.product.title}</div>
                     <div>Price: ${props.product.price}</div>
                     <div>Quantity: {props.product.quantity}</div>
